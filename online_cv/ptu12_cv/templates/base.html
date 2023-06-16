@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset = "UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}My CV Database{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header>
+    <ul class="nav">
+        <li class="logo">&#128218; MY CV database</li>
+        <li><a href="{%url 'index' %}">Home</a></li>
+        <li><a href="{%url 'index' %}">User</a></li>
+        <li><a href="{%url 'index' %}">CVs</a></li>
+        <li><a href="{%url 'index' %}">My Cvs</a></li>
+        <li><a href="{%url 'index' %}">Log in</a></li>
+        <li><a href="{%url 'index' %}">Log out</a></li>
+    </ul>
+</header>
+<main>{%block content%}
+{%endblock content %}</main>
+<footer><p>&copy; 2023 <a href="https//discord.gg/QAUWnqGF" target="_blank">My CV</a></p></footer>
+</body>
+</html>
