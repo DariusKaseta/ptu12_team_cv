@@ -13,7 +13,7 @@
         <li class="logo">&#128218; CV Online</li>
         <li><a href="{%url 'index' %}">Home</a></li>
         <li><a href="{%url 'participle_view' %}">For HR's</a></li>
-        <li><a href="{%url 'index' %}">CVs</a></li>
+        <li><a href="{%url 'cvs' %}">CVs</a></li>
         {% if user.is_authenticated %}
         <li><a href="{% url 'profile' %}">&#128100; {{ user.get_username }}</a></li>
         <li><a href="{%url 'index' %}">My Cvs</a></li>

@@ -49,7 +49,8 @@ class Education(models.Model):
     )
 
     school = models.CharField(_("school"), default="middle", max_length=100, choices=SCHOOL_CHOICES, db_index=True)
-    # school_name = models.CharField(_("school_name"), max_length=100, db_index=True)
+    
+    school_name = models.CharField(_("school_name"), max_length=100, db_index=True)
 
 
     class Meta:
@@ -100,12 +101,31 @@ class CV(models.Model):
     first_name = models.CharField(_("first_name"), max_length=100)
     last_name = models.CharField(_("last_name"), max_length=100, db_index=True)
     email = models.CharField(_("email"), max_length=100, db_index=True)
-    # country_code = models.CharField(_("code"), max_length=10)
-    # extention = models.IntegerField(_("phone_number"), max_length=20)
+    country_code = models.CharField(_("code"), max_length=10, default="+370")
+    extention = models.IntegerField(_("phone_number"))
     city = models.CharField(_("city"), max_length=100, db_index=True)
     picture = models.ImageField(_("picture"), upload_to="online_cv/media/ptu12_cv/cv_pictures", null=True, blank=True)
     title = models.CharField(_("title"), max_length=100)
-    # scope = models.CharField(_("scope"), max_length=150)
+
+    SCOPE_CHOICES = (
+        ("it", _("IT")),
+        ("marketing", _("Marketing")),
+        ("book_keeping", _("Book Keeping")),
+        ("medicine", _("Medicine")),
+        ("hr", _("Human Resources")),
+        ("education", _("Education")),
+        ("economy", _("Economy")),
+        ("banking", _("Banking")),
+        ("engineering", _("Engineering")),
+        ("agro_culture", _("Agro Culture")),
+        ("biology", _("Biology")),
+        ("linguistics", _("Linguistics")),
+        ("service_management", _("Service Management")),
+        ("graphic_design", _("Graphic Design")),
+        ("other", _("Other"))
+        )
+
+    scope = models.CharField(_("scope"), max_length=50, choices=SCOPE_CHOICES, db_index=True)
 
     class Meta:
         verbose_name = _("CV")

@@ -28,11 +28,11 @@
 </ul>
 {% comment %} <ul>
     <li><a href="{% url 'create_cv' %}">Add CV</a></li>
-</ul> {% endcomment %}
+</ul>  
 {% comment %} {% with cv_list.paginator.page as page_obj %}
     {% include 'includes/paginator_pages.html' %}
-{% endwith %}
+{% endwith %}{% endcomment %}
 {% else %}
-    <p>No CV Found</p> {% endcomment %}
+    <p>No CV Found</p>
 {% endif %}
 {% endblock content %}
