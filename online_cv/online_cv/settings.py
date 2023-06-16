@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "ptu12_cv",
+    "user_profile",
     "rest_framework",
     'django.contrib.admin',
     'django.contrib.auth',
