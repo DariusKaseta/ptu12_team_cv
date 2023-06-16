@@ -5,6 +5,8 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path('CVs/', views.cv_list, name='cvs'),
+
     path("cv/<int:pk>/", views.cv_detail, name="cv_details"),
     path("participle/", views.cv_participles_view, name="participle_view"),
 ]

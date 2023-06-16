@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} CVs {{ block.super }}{% endblock title %}
+{% block content %}
+<h1> CVs </h1>
+{% comment %} {% include 'includes/search.html' %} {% endcomment %}
+{% if cv_list %}
+{% comment %} {% include 'includes/paginator_nav.html' %} {% endcomment %}
+<ul class='cv-'>
+    {% for cv in cv_list %}
+        <li>
+            {% comment %} <a href="{% url 'cv_detail' cv.pk %}"> {% endcomment %}
+                {% if cv.photo %}
+                    <img class="cv-photo" src="{{ cv.photo.url }}">
+                {% else %}
+                    <img class="cv-photo default-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}">
+                {% endif %}
+                <h3>
+                    {% if cv.title|length > 36 %}
+                        {{ cv.title|slice:35 }}...
+                    {% else %}
+                        {{ cv.title }}
+                    {% endif %}
+                </h3>
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% comment %} <ul>
+    <li><a href="{% url 'create_cv' %}">Add CV</a></li>
+</ul> {% endcomment %}
+{% comment %} {% with cv_list.paginator.page as page_obj %}
+    {% include 'includes/paginator_pages.html' %}
+{% endwith %}
+{% else %}
+    <p>No CV Found</p> {% endcomment %}
+{% endif %}
+{% endblock content %}
