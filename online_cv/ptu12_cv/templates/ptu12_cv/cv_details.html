@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}CV's Details{% endblock title %}
+
+{% block content %}
+  <h1>CV's Details</h1>
+
+  <p>User: {{ cv.user }}</p>
+  <p>First & Last name: {{ cv.first_name }} {{ cv.last_name }}</p>
+  <p>City: {{ cv.city }}</p>
+  <p>Email: {{ cv.email }}</p>
+  <p>Phone: {{ cv.country_code }}{{ cv.extention }}</p>
+  <p>Picture: {{ cv.picture }}</p>
+  <p>CV's title: {{ cv.title }}</p>
+
+{% endblock content %}

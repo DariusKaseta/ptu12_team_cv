@@ -38,6 +38,7 @@ class Education(models.Model):
     date_from = models.DateField(_("date_from"), default=timezone.now)
     date_until = models.DateField(_("date_until"), default=timezone.now)
     
+    
     SCHOOL_CHOICES = (
         ("middle", _("Middle School")),
         ("high", _("High School")),
@@ -48,6 +49,8 @@ class Education(models.Model):
     )
 
     school = models.CharField(_("school"), default="middle", max_length=100, choices=SCHOOL_CHOICES, db_index=True)
+    # school_name = models.CharField(_("school_name"), max_length=100, db_index=True)
+
 
     class Meta:
         verbose_name = _("education")
@@ -97,10 +100,12 @@ class CV(models.Model):
     first_name = models.CharField(_("first_name"), max_length=100)
     last_name = models.CharField(_("last_name"), max_length=100, db_index=True)
     email = models.CharField(_("email"), max_length=100, db_index=True)
-    phone = models.IntegerField(_("phone"))
+    # country_code = models.CharField(_("code"), max_length=10)
+    # extention = models.IntegerField(_("phone_number"), max_length=20)
     city = models.CharField(_("city"), max_length=100, db_index=True)
     picture = models.ImageField(_("picture"), upload_to="online_cv/media/ptu12_cv/cv_pictures", null=True, blank=True)
     title = models.CharField(_("title"), max_length=100)
+    # scope = models.CharField(_("scope"), max_length=150)
 
     class Meta:
         verbose_name = _("CV")
