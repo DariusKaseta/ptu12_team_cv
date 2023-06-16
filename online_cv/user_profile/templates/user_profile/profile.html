@@ -10,6 +10,6 @@
 {% endif %}
 {% if user_ == request.user %}
     <p>E-mail: {{ user_.email }}</p>
-    <p><a href="{% url 'profile_update' %}">update profile</a></p>
+    {% comment %} <p><a href="{% url 'profile_update' %}">update profile</a></p> {% endcomment %}
 {% endif %}
 {% endblock content %}
