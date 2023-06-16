@@ -13,3 +13,4 @@ def profile(request, user_id=None):
     else:
         user = get_object_or_404(get_user_model(), id=user_id)
     return render(request, 'user_profile/profile.html', {'user_': user})
+
