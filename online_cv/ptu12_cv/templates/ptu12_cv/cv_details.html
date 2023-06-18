@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
+{% load static%}
 {% block title %}CV's Details{% endblock title %}
-
 {% block content %}
   <h1>CV's Details</h1>
-
+{% if cv.photo %}
+  <img class="cv-photo" src="{{ cv.photo.url }}" style="max-width: 200px; max-height: 200px;">
+{% else %}
+  <img class="cv-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}" style="max-width: 200px; max-height: 200px;">
+{% endif %}
   <p>User: {{ cv.user }}</p>
   <p>First & Last name: {{ cv.first_name }} {{ cv.last_name }}</p>
   <p>City: {{ cv.city }}</p>
@@ -11,5 +15,8 @@
   <p>Phone: {{ cv.country_code }}{{ cv.extention }}</p>
   <p>Picture: {{ cv.picture }}</p>
   <p>CV's title: {{ cv.title }}</p>
+
+  <a href="{% url 'cv_pdf' cv.pk %}">Download PDF</a>
+
 
 {% endblock content %}

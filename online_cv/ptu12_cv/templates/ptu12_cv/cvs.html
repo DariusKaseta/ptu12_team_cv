@@ -9,7 +9,7 @@
 <ul class='cv-'>
     {% for cv in cv_list %}
         <li>
-            {% comment %} <a href="{% url 'cv_detail' cv.pk %}"> {% endcomment %}
+            <a href="{% url 'cv_details' cv.pk %}">
                 {% if cv.photo %}
                     <img class="cv-photo" src="{{ cv.photo.url }}">
                 {% else %}
