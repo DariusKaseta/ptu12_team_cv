@@ -69,8 +69,17 @@ def create_cv(request):
     elif request.method == 'POST':
         form = CvForm(request.POST)
         if form.is_valid():
-            cv = cv.save(commit=False)
+            cv = form.save(commit=False)
             cv.user = request.user
+            cv.save()
+            return redirect('cv_detail', pk=cv.pk)
+    
+    return render(request, 'user_profile/create_cv.html', {'form':form})
+
+
+
+
+
 @login_required
 @csrf_protect
 def profile_update(request):

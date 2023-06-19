@@ -30,29 +30,30 @@ class CvForm(forms.ModelForm):
     def save(self, commit=True):
         cv = super().save(commit=commit)
 
-        education_program = self.cleaned_data['education_program']
-        education_date_from = self.cleaned_data['education_date_from']
-        education_date_until = self.cleaned_data['education_date_until']
-        education_school = self.cleaned_data['education_school']
-        education_school_name = self.cleaned_data['education_school_name']
-        education_degree = self.cleaned_data['education_degree']
-        education = Education(cv=cv, program=education_program, date_from=education_date_from, date_until=education_date_until, school=education_school, school_name=education_school_name, degree=education_degree)
-        education.save()
+        if commit:
+            education_program = self.cleaned_data['education_program']
+            education_date_from = self.cleaned_data['education_date_from']
+            education_date_until = self.cleaned_data['education_date_until']
+            education_school = self.cleaned_data['education_school']
+            education_school_name = self.cleaned_data['education_school_name']
+            education_degree = self.cleaned_data['education_degree']
+            education = Education(cv=cv, program=education_program, date_from=education_date_from, date_until=education_date_until, school=education_school, school_name=education_school_name, degree=education_degree)
+            education.save()
 
-        work_experience_workplace_name = self.cleaned_data['work_experience_workplace_name']
-        work_experience_date_from = self.cleaned_data['work_experience_date_from']
-        work_experience_date_until = self.cleaned_data['work_experience_date_until']
-        work_experience_duties = self.cleaned_data['work_experience_duties']
-        work_experience = WorkExperience(cv=cv, workplace_name=work_experience_workplace_name, date_from=work_experience_date_from, date_until=work_experience_date_until, duties=work_experience_duties)
-        work_experience.save()
+            work_experience_workplace_name = self.cleaned_data['work_experience_workplace_name']
+            work_experience_date_from = self.cleaned_data['work_experience_date_from']
+            work_experience_date_until = self.cleaned_data['work_experience_date_until']
+            work_experience_duties = self.cleaned_data['work_experience_duties']
+            work_experience = WorkExperience(cv=cv, workplace_name=work_experience_workplace_name, date_from=work_experience_date_from, date_until=work_experience_date_until, duties=work_experience_duties)
+            work_experience.save()
 
-        skill = self.cleaned_data['skill']
-        skill = Skill(cv=cv, skill=skill)
-        skill.save()
+            skill = self.cleaned_data['skill']
+            skill = Skill(cv=cv, skill=skill)
+            skill.save()
 
-        summary_about_user = self.cleaned_data['summary_about_user']
-        summary = Summary(cv=cv, about_user=summary_about_user)
-        summary.save()
+            summary_about_user = self.cleaned_data['summary_about_user']
+            summary = Summary(cv=cv, about_user=summary_about_user)
+            summary.save()
 
         return cv
 

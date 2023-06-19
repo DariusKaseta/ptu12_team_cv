@@ -16,7 +16,7 @@
         <li><a href="{%url 'cvs' %}">CVs</a></li>
         {% if user.is_authenticated %}
         <li><a href="{% url 'profile' %}">&#128100; {{ user.get_username }}</a></li>
-        <li><a href="{%url 'index' %}">My Cvs</a></li>
+        <li><a href="{%url 'my_cv' %}">My Cvs</a></li>
         <li><a href="{%url 'logout' %}">Log out</a></li>
         {% else %}
         <li><a href="{%url 'signup' %}">Sign up</a></li>
@@ -26,6 +26,7 @@
         {% if user.is_staff or user.is_superuser %}
         <li><a href="{% url 'admin:index' %}">Admin</a></li>
         <li><a href="{% url 'signup' %}">Sign up</a></li>
+        
     {% endif %}
 {% endif %}
 
