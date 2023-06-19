@@ -12,7 +12,7 @@ def create_meeting_reservation(request):
         form = MeetingReservationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('meeting_reservation/meeting_reservation_list')
+            return redirect('meeting_reservation_list')
     else:
         form = MeetingReservationForm()
     return render(request, 'meeting_reservation/create_meeting_reservation.html', {'form': form})
