@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Create meeting reservation{% endblock title %}
+
+{% block content %}
+  <h1>Create meeting reservation</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create reservation</button>
+  </form>
+{% endblock content %}
