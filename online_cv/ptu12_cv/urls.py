@@ -1,7 +1,6 @@
 from django.urls import path
 from . import views
-# from .views import cv_participles_view
-from .views import cv_pdf_view
+from .views import cv_pdf_view, cv_participles_view
 
 
 
