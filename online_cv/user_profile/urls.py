@@ -10,4 +10,5 @@ urlpatterns = [
     # path('profile/update/', views.profile_update, name='profile_update'),
     # path('my-cv/', my_cv, name='my_cv'),
 
+    path('profile/update/', views.profile_update, name='profile_update'),
 ]

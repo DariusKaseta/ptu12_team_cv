@@ -5,8 +5,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_protect
 from ptu12_cv.models import CV
 from .forms import CvForm
+from . forms import ProfileUpdateForm, UserUpdateForm
+
 
 User = get_user_model()
+
 
 @login_required
 def profile(request, user_id=None):
@@ -68,3 +71,18 @@ def create_cv(request):
         if form.is_valid():
             cv = cv.save(commit=False)
             cv.user = request.user
+@login_required
+@csrf_protect
+def profile_update(request):
+    if request.method == "POST":
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, "Profile updated.")
+            return redirect('profile')
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
+    return render(request, 'user_profile/profile_update.html', {'user_form': user_form, 'profile_form': profile_form})
