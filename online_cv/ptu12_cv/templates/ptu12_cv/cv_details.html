@@ -8,13 +8,26 @@
 {% else %}
   <img class="cv-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}" style="max-width: 200px; max-height: 200px;">
 {% endif %}
-  <p>User: {{ cv.user }}</p>
-  <p>First & Last name: {{ cv.first_name }} {{ cv.last_name }}</p>
-  <p>City: {{ cv.city }}</p>
-  <p>Email: {{ cv.email }}</p>
-  <p>Phone: {{ cv.country_code }}{{ cv.extention }}</p>
-  <p>Picture: {{ cv.picture }}</p>
-  <p>CV's title: {{ cv.title }}</p>
+<h2>Contacting information:</h2>
+    <li>
+      <p>User: {{ cv.user }}</p>
+      <p>CV's title: {{ cv.title }}</p>
+      <p>First & Last name: {{ cv.first_name }} {{ cv.last_name }}</p>
+      <p>Email: {{ cv.email }}</p>
+      <p>Phone: {{ cv.country_code }} {{ cv.extention }}</p>
+      <p>City: {{ cv.city }}</p>
+      <p>Picture: {{ cv.picture }}</p>
+    </li>
+<h3>Education:</h3>
+  <ul>
+  {% for education in user.educations.all %}
+          <p>Institution: {{ education.school }}</p>
+          <p>Program: {{ education.program }}</p>
+          <p>Institution name: {{ education.school_name }}</p>
+          <p>Period: {{ education.date_from }} - {{ education.date_until }}</p>
+          
+    {% endfor %}
+</ul>
 
   <a href="{% url 'cv_pdf' cv.pk %}">Download PDF</a>
 
