@@ -15,10 +15,8 @@
         <li><a href="{%url 'participle_view' %}">For HR's</a></li>
         <li><a href="{%url 'cvs' %}">CVs</a></li>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'profile' %}">&#128100; {{ user.get_username }}</a></li>
         <li><a href="{%url 'my_cv' %}">My Cvs</a></li>
         <li><a href="{%url 'profile' %}">&#128100; {{ user.get_username }}</a></li>
-        <li><a href="{%url 'index' %}">My Cvs</a></li>
         <li><a href="{%url 'meeting_reservation_list' %}">My Meetings</a></li>
         <li><a href="{%url 'logout' %}">Log out</a></li>
         {% else %}
