@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "ptu12_cv",
     "user_profile",
+    "meeting_reservation",
     "rest_framework",
     # "wkhtmltopdf",
     'phonenumber_field',
