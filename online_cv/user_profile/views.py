@@ -72,7 +72,7 @@ def create_cv(request):
             cv = form.save(commit=False)
             cv.user = request.user
             cv.save()
-            return redirect('cv_detail', pk=cv.pk)
+            return redirect('cv_details', pk=cv.pk)
     
     return render(request, 'user_profile/create_cv.html', {'form':form})
 
