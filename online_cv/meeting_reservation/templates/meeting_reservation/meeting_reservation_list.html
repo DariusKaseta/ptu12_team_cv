@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Meeting Reservations{% endblock title %}
+{% block title %}Meeting reservations{% endblock title %}
 
 {% block content %}
-    <h1>Meeting Reservations</h1>
+    <h1>Meeting reservations</h1>
 
     {% if reservations %}
         <ul>
             {% for reservation in reservations %}
                 <li>
                     <p>User: {{ reservation.user }}</p>
-                    <p>HR Representative: {{ reservation.hr_representative }}</p>
-                    <p>Start Time: {{ reservation.start_time }}</p>
-                    <p>End Time: {{ reservation.end_time }}</p>
+                    <p>HR representative: {{ reservation.hr_representative }}</p>
+                    <p>Start time: {{ reservation.start_time }}</p>
+                    <p>End time: {{ reservation.end_time }}</p>
                 </li>
             {% empty %}
                 <li>No meeting reservations available.</li>
@@ -23,5 +23,5 @@
         <p>No meeting reservations available.</p>
     {% endif %}
 
-    <a href="{% url 'create_meeting_reservation' %}">Create Meeting Reservation</a>
+    <a href="{% url 'create_meeting_reservation' %}">Create meeting reservation</a>
 {% endblock content %}
