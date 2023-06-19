@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from .models import CV, Education
+from .models import CV, Education, WorkExperience, Skill, Summary
 from django.db.models import Q
 import pdfkit
 from django.template.loader import get_template
@@ -17,9 +17,18 @@ def base_view(request):
 
 def cv_detail(request, pk):
     cv = get_object_or_404(CV, pk=pk)
-    education = get_object_or_404(Education, pk=pk)
-    return render(request, "ptu12_cv/cv_details.html", {"cv": cv, "education": education})
-
+    education = Education.objects.filter(cv=cv)
+    work_experience = WorkExperience.objects.filter(cv=cv)
+    skill = Skill.objects.filter(cv=cv)
+    summary = Summary.objects.filter(cv=cv)
+    return render(
+        request,
+        "ptu12_cv/cv_details.html", 
+        {"cv": cv, 
+        "education": education, 
+        "work_experience": work_experience, 
+        "skill": skill,
+        "summary": summary})
 
 def cv_participles_view(request):
     participles = CV.objects.all()
@@ -55,8 +64,8 @@ def cv_list(request):
 def cv_pdf_view(request, pk):
     cv = get_object_or_404(CV, pk=pk)
     context = {'cv': cv}
-    # html = get_template('ptu12_cv/cv_details.html').render(context)
-    html = get_template('cv_details.html').render(context)
+    html = get_template('ptu12_cv/cv_details.html').render(context)
+    # html = get_template('cv_details.html').render(context)
 
 
     pdf = pdfkit.from_string(html, False)
