@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from .models import CV
+from .models import CV, Education
 from django.db.models import Q
 import pdfkit
 from django.template.loader import get_template
@@ -17,7 +17,8 @@ def base_view(request):
 
 def cv_detail(request, pk):
     cv = get_object_or_404(CV, pk=pk)
-    return render(request, "ptu12_cv/cv_details.html", {"cv": cv})
+    education = get_object_or_404(Education, pk=pk)
+    return render(request, "ptu12_cv/cv_details.html", {"cv": cv, "education": education})
 
 
 def cv_participles_view(request):

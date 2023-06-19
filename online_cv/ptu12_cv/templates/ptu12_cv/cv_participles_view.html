@@ -6,7 +6,7 @@
   <ul>
     {% for participle in participles %}
       <li>
-        <a href="{% url 'cv_details' pk=participle.pk %}">{{ participle.first_name }} - {{ participle.last_name }} - {{ participle.city }}</a>
+        <a href="{% url 'cv_details' pk=participle.pk %}">{{ participle.first_name }} - {{ participle.last_name }} - {{ participle.city }} - {{ participle.scope }} </a>
       </li>
     {% endfor %}
   </ul>

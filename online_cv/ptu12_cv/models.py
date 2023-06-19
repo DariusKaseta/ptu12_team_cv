@@ -42,18 +42,18 @@ class Education(models.Model):
     
     
     SCHOOL_CHOICES = (
-        ("middle", _("Middle School")),
-        ("high", _("High School")),
-        ("home", _("Home Schooling")),
-        ("vocational", _("Vocational School")),
-        ("university/college", _("University/College")),
-        ("certificate", _("Certificate"))
+        ("Middle", _("Middle School")),
+        ("High", _("High School")),
+        ("Home Schooling", _("Home Schooling")),
+        ("Vocational", _("Vocational School")),
+        ("University/College", _("University/College")),
     )
 
     school = models.CharField(_("school"), default="middle", max_length=100, choices=SCHOOL_CHOICES, db_index=True)
     
     school_name = models.CharField(_("school_name"), max_length=100, db_index=True)
 
+    degree = models.CharField(_("degree"), max_length=100, default="---", db_index=True)
 
     class Meta:
         verbose_name = _("education")
@@ -111,21 +111,21 @@ class CV(models.Model):
     title = models.CharField(_("title"), max_length=100)
 
     SCOPE_CHOICES = (
-        ("it", _("IT")),
-        ("marketing", _("Marketing")),
-        ("book_keeping", _("Book Keeping")),
-        ("medicine", _("Medicine")),
-        ("hr", _("Human Resources")),
-        ("education", _("Education")),
-        ("economy", _("Economy")),
-        ("banking", _("Banking")),
-        ("engineering", _("Engineering")),
-        ("agro_culture", _("Agro Culture")),
-        ("biology", _("Biology")),
-        ("linguistics", _("Linguistics")),
-        ("service_management", _("Service Management")),
-        ("graphic_design", _("Graphic Design")),
-        ("other", _("Other"))
+        ("IT", _("IT")),
+        ("Marketing", _("Marketing")),
+        ("Book_Keeping", _("Book Keeping")),
+        ("Medicine", _("Medicine")),
+        ("Human Resources", _("Human Resources")),
+        ("Education", _("Education")),
+        ("Economy", _("Economy")),
+        ("Banking", _("Banking")),
+        ("Engineering", _("Engineering")),
+        ("Agro Culture", _("Agro Culture")),
+        ("Biology", _("Biology")),
+        ("Linguistics", _("Linguistics")),
+        ("Service_Management", _("Service Management")),
+        ("Graphic Design", _("Graphic Design")),
+        ("Other", _("Other"))
         )
 
     scope = models.CharField(_("scope"), max_length=50, choices=SCOPE_CHOICES, db_index=True)
