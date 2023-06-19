@@ -6,8 +6,8 @@ from django.views.decorators.csrf import csrf_protect
 from . forms import ProfileUpdateForm, UserUpdateForm
 
 
-
 User = get_user_model()
+
 
 @login_required
 def profile(request, user_id=None):
@@ -51,7 +51,6 @@ def signup(request):
             messages.success(request, "User registration successful!")
             return redirect('login')
     return render(request, 'user_profile/signup.html')
-
 
 @login_required
 @csrf_protect
