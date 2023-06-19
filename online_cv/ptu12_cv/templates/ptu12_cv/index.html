@@ -4,9 +4,9 @@
 <h1>Online CV</h1>
 <p>Welcome!</p>
 <p>Currently working on:</p>
-<form method="post">
+{% comment %} <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit</button>
-</form>
+</form> {% endcomment %}
 {% endblock content %}
