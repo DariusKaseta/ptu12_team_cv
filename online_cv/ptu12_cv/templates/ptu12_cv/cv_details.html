@@ -16,31 +16,41 @@
         <li><p>Email: {{ cv.email }}</p></li>
         <li><p>Phone: {{ cv.country_code }} {{ cv.extention }}</p></li>
         <li><p>City: {{ cv.city }}</p></li>
-        <li><p>Picture: {{ cv.picture }}</p></li>
+        <li><p>Picture:</p>
+        {% if cv.picture %}
+          <img class="cv-photo" src="{{ cv.picture.url }}" style="max-width: 200px; max-height: 200px;">
+        {% else %}
+          <img class="cv-photo" src="{% static 'ptu12_team_cv/online_cv/media/online_cv/media/ptu12_cv/cv_pictures/naujas_vartotojo_veidas.jpeg' %}" style="max-width: 200px; max-height: 200px;">
+        {% endif %}</li>
       </ul>
 <h2>Education:</h2>
 <ul>
     {% for education in user.educations.all %}
-        <li><p>Institution: {{ education.school }}</p></li>
-        <li><p>Program: {{ education.program }}</p></li>
-        <li><p>Institution name: {{ education.school_name }}</p></li>
-        <li><p>Obtained degree: {{ education.degree }}</p></li>
-        <li><p>Period: {{ education.date_from }} - {{ education.date_until }}</p></li>
-          
+        <li class="education-item">
+          <p>Institution: {{ education.school }}</p>
+          <p>Program: {{ education.program }}</p>
+          <p>Institution name: {{ education.school_name }}</p>
+          <p>Obtained degree: {{ education.degree }}</p>
+          <p>Period: {{ education.date_from }} - {{ education.date_until }}</p>
+        </li>
     {% endfor %}
 </ul>
 <h2>Work Experience:</h2>
 <ul>
   {% for experience in user.work_experiences.all %}
-      <li><p>Workplace: {{ experience.workplace_name }}</p></li>
-      <li><p>Main duties: {{ experience.duties }}</p></li>
-      <li><p>Working period: {{ experience.date_from }} - {{ experience.date_until }}</p></li>
+      <li class="workexperience-item">
+        <p>Workplace: {{ experience.workplace_name }}</p>
+        <p>Main duties: {{ experience.duties }}</p>
+        <p>Working period: {{ experience.date_from }} - {{ experience.date_until }}</p>
+      </li>
   {% endfor %}
 </ul>
 <h2>Skills:</h2>
 <ul>
   {% for skill in user.skills.all %}
-      <li><p>Job related skills: {{ skill.skill }}</p></li>
+    <li class="skill-item">
+      <p>Job related skills: {{ skill.skill }}</p>
+    </li>
   {% endfor %}
 </ul>
 <h2>Summary:</h2>

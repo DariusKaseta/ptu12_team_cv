@@ -9,29 +9,29 @@
 </head>
 <body>
 <header>
+<div class="nav-panel">
     <ul class="nav">
-        <li class="logo">&#128218; CV Online</li>
-        <li><a href="{%url 'index' %}">Home</a></li>
-        <li><a href="{%url 'participle_view' %}">For HR's</a></li>
-        <li><a href="{%url 'cvs' %}">CVs</a></li>
+        <strong><li class="logo">&#128234; Create your own personal CV online!</li></strong>
+        <li class="nav-button"><a href="{% url 'index' %}">Home</a></li>
+        <li class="nav-button"><a href="{% url 'participle_view' %}">For HR's</a></li>
+        <li class="nav-button"><a href="{% url 'cvs' %}">CVs</a></li>
         {% if user.is_authenticated %}
-        <li><a href="{%url 'my_cv' %}">My Cvs</a></li>
-        <li><a href="{%url 'profile' %}">&#128100; {{ user.get_username }}</a></li>
-        <li><a href="{%url 'meeting_reservation_list' %}">My Meetings</a></li>
-        <li><a href="{%url 'logout' %}">Log out</a></li>
+        <li class="nav-button"><a href="{% url 'profile' %}">&#128100; {{ user.get_username }}</a></li>
+        <li class="nav-button"><a href="{% url 'meeting_reservation_list' %}">My Meetings</a></li>
+        <li class="nav-button"><a href="{% url 'my_cv' %}">My Cvs</a></li>
+        <li class="nav-button"><a href="{% url 'logout' %}">Log out</a></li>
         {% else %}
         <li><a href="{%url 'signup' %}">Sign up</a></li>
         <li><a href="{%url 'login' %}">Log in</a></li>
         {% endif %}
         {% if user.is_authenticated %}
         {% if user.is_staff or user.is_superuser %}
-        <li><a href="{% url 'admin:index' %}">Admin</a></li>
-        <li><a href="{% url 'signup' %}">Sign up</a></li>
-        
-    {% endif %}
-{% endif %}
-
+        <li class="nav-button"><a href="{% url 'admin:index' %}">Admin</a></li>
+        <li class="nav-button"><a href="{% url 'signup' %}">Sign up</a></li>
+        {% endif %}
+        {% endif %}
     </ul>
+</div>
 </header>
 <main>{%block content%}
 {%endblock content %}</main>
