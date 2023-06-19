@@ -7,6 +7,16 @@ from django.utils.translation import gettext_lazy as _
 class HRRepresentative(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = _("hr representative")
+        verbose_name_plural = _("hr representatives")
+
+    def __str__(self):
+        return f"{self.user}"
+    
+    def get_absolute_url(self):
+        return reverse("hrrepresentative_detail", kwargs={"pk": self.pk})
+
 
 class MeetingReservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
