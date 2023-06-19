@@ -3,7 +3,8 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_protect
-
+from ptu12_cv.models import CV
+from .forms import CvForm
 
 User = get_user_model()
 
@@ -49,3 +50,21 @@ def signup(request):
             messages.success(request, "User registration successful!")
             return redirect('login')
     return render(request, 'user_profile/signup.html')
+
+
+@login_required
+def my_cv(request):
+    user_cv = CV.objects.filter(user=request.user)
+    return render(request, 'user_profile/my_cv.html', {'user_cv':user_cv})
+
+
+@login_required
+def create_cv(request):
+    if request.method == 'GET':
+        form = CvForm()
+        return render(request, 'user_profile/create_cv.html', {'form':form})
+    elif request.method == 'POST':
+        form = CvForm(request.POST)
+        if form.is_valid():
+            cv = cv.save(commit=False)
+            cv.user = request.user

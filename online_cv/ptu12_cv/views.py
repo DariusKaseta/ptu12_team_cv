@@ -17,8 +17,8 @@ def base_view(request):
 
 def cv_detail(request, pk):
     cv = get_object_or_404(CV, pk=pk)
-    education = get_object_or_404(Education, pk=pk)
-    return render(request, "ptu12_cv/cv_details.html", {"cv": cv, "education": education})
+    # education = get_object_or_404(Education, pk=pk)
+    return render(request, "ptu12_cv/cv_details.html", {"cv": cv})
 
 
 def cv_participles_view(request):
@@ -55,8 +55,8 @@ def cv_list(request):
 def cv_pdf_view(request, pk):
     cv = get_object_or_404(CV, pk=pk)
     context = {'cv': cv}
-    # html = get_template('ptu12_cv/cv_details.html').render(context)
-    html = get_template('cv_details.html').render(context)
+    html = get_template('ptu12_cv/cv_details.html').render(context)
+    # html = get_template('cv_details.html').render(context)
 
 
     pdf = pdfkit.from_string(html, False)

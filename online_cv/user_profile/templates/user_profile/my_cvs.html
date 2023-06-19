@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} My CVs {% endblock title %}
+{% block content %}
+    <h1>My CVs</h1>
+    {% if user_cv|length > 0 %}
+        <ul>
+            {% for cv in user_cv %}
+                <a href="{% url 'cv_details' cv.pk %}">
+                <li>{{ cv.title }}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            <li><a href="{% url 'create_cv' %}">Add My CV</a></li>
+        </ul>
+    {% else %}
+        <p>No CVs found.</p>
+    {% endif %}
+{% endblock content %}
