@@ -5,65 +5,6 @@ from ptu12_cv.models import CV, Skill, Education, WorkExperience
 from django.forms import formset_factory, inlineformset_factory
 
 
-# class CvForm(forms.ModelForm):
-#     summary_about_user = forms.CharField(label=("About User"), max_length=500, widget=forms.Textarea)
-
-#     EducationFormSet = inlineformset_factory(
-#         CV,
-#         Education,
-#         fields=('program', 'date_from', 'date_until', 'school', 'school_name', 'degree'),
-#         extra=1,
-#         can_delete=True
-#     )
-#     WorkExperienceFormSet = inlineformset_factory(
-#         CV,
-#         WorkExperience,
-#         fields=('workplace_name', 'date_from', 'date_until', 'duties'),
-#         extra=1,
-#         can_delete=True
-#     )
-#     SkillFormSet = inlineformset_factory(
-#         CV,
-#         Skill,
-#         fields=('skill',),
-#         extra=1,
-#         can_delete=True
-#     )
-
-#     class Meta:
-#         model = CV
-#         fields = ("user", "title", "first_name", "last_name", "email", "phone_number", "city", "picture", "scope")
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-
-#         self.fields['title'].required = True
-#         self.fields['first_name'].required = True
-#         self.fields['last_name'].required = True
-#         self.fields['email'].required = True
-#         self.fields['phone_number'].required = True
-#         self.fields['city'].required = True
-#         # self.fields['picture'].required = True
-#         self.fields['scope'].required = True
-
-#     def save(self, commit=True):
-#         cv = super().save(commit=commit)
-
-#         if commit:
-#             education_formset = self.EducationFormSet(self.data, instance=cv)
-#             if education_formset.is_valid():
-#                 education_formset.save()
-
-#             work_experience_formset = self.WorkExperienceFormSet(self.data, instance=cv)
-#             if work_experience_formset.is_valid():
-#                 work_experience_formset.save()
-
-#             skill_formset = self.SkillFormSet(self.data, instance=cv)
-#             if skill_formset.is_valid():
-#                 skill_formset.save()
-
-#         return cv
-
 EducationFormSet = inlineformset_factory(
     CV,
     Education,
