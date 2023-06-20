@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import my_cv, create_cv
+from .views import my_cv, create_cv, update_cv
 
 
 urlpatterns = [
@@ -11,4 +11,3 @@ urlpatterns = [
     path('my-cv/', my_cv, name='my_cv'),
     path('create-cv/', create_cv, name='create_cv'),
     path('profile/update/', views.profile_update, name='profile_update'),
-]

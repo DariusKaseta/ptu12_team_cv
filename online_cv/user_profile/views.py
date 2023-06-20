@@ -5,7 +5,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_protect
 from ptu12_cv.models import CV
 from .forms import CvForm
-from . forms import ProfileUpdateForm, UserUpdateForm
+from .forms import ProfileUpdateForm, UserUpdateForm, EducationFormSet, WorkExperienceFormSet, SkillFormSet
+from django.forms import inlineformset_factory
 
 
 User = get_user_model()
@@ -63,21 +64,55 @@ def my_cv(request):
 
 @login_required
 def create_cv(request):
-    if request.method == 'GET':
-        form = CvForm()
-        return render(request, 'user_profile/create_cv.html', {'form':form})
-    elif request.method == 'POST':
+    form = CvForm()
+    education_formset = EducationFormSet(instance=CV(), prefix='education_formset')
+    work_experience_formset = WorkExperienceFormSet(instance=CV(), prefix='work_experience_formset')
+    skill_formset = SkillFormSet(instance=CV(), prefix='skill_formset')
+    
+    if request.method == 'POST':
         form = CvForm(request.POST)
         if form.is_valid():
             cv = form.save(commit=False)
             cv.user = request.user
-            cv.save()
-            return redirect('cv_details', pk=cv.pk)
+            
+            education_formset = EducationFormSet(request.POST, instance=cv, prefix = 'education_formset')
+            work_experience_formset = WorkExperienceFormSet(request.POST, instance=cv, prefix = 'work_experience_formset')
+            skill_formset = SkillFormSet(request.POST, instance=cv, prefix= 'skill_formset' )
+
+            if education_formset.is_valid() and work_experience_formset.is_valid() and skill_formset.is_valid():
+                cv.save()
+
+                for education_form in education_formset:
+                    education_form.instance.user = request.user
+
+                for work_experience_form in work_experience_formset:
+                    work_experience_form.instance.user = request.user
+
+                for skill_form in skill_formset:
+                    skill_form.instance.user = request.user
+
+                education_formset.save()
+                work_experience_formset.save()
+                skill_formset.save()
+
+                return redirect('cv_details', pk=cv.pk)
     
-    return render(request, 'user_profile/create_cv.html', {'form':form})
+    else:
+        form = CvForm()
+        education_formset = EducationFormSet(instance=CV(), prefix='education_formset')
+        work_experience_formset = WorkExperienceFormSet(instance=CV(), prefix='work_experience_formset')
+        skill_formset = SkillFormSet(instance=CV(), prefix='skill_formset')
 
-
-
+    return render(
+        request,
+        'user_profile/create_cv.html',
+        {
+            'form':form,
+            'education_formset':education_formset,
+            'work_experience_formset':work_experience_formset,
+            'skill_formset':skill_formset,
+        }
+    )
 
 
 @login_required
@@ -95,3 +130,18 @@ def profile_update(request):
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
     return render(request, 'user_profile/profile_update.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+@login_required
+def update_cv(request):
+    cv_id = request.GET.get("cv_id")
+    cv = get_object_or_404(CV, pk=cv_id, user=request.user)
+    
+    if request.method == "POST":
+        form = CvForm(request.POST, request.FILES, isinstance=cv)
+        if form.is_valid():
+            form.save()
+            return redirect('cv_details', pk=cv.pk)
+    else:
+        form = CvForm(instance=cv)
+    return render(request, 'user_profile/update_cv.html', {'form': form})
