@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django import forms
 from . import models
-from ptu12_cv.models import CV, Skill, Education, WorkExperience
+from ptu12_cv.models import CV, Skill, Education, WorkExperience, Summary
 from django.forms import formset_factory, inlineformset_factory
 
 
@@ -23,6 +23,13 @@ SkillFormSet = inlineformset_factory(
     CV,
     Skill,
     fields=('skill',),
+    extra=1,
+    can_delete=True
+)
+SummaryFormSet = inlineformset_factory(
+    CV,
+    Summary,
+    fields=('about_user',),
     extra=1,
     can_delete=True
 )

@@ -4,39 +4,63 @@
   <h1>Update CV</h1>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
     <fieldset>
-      <legend>Personal Information:</legend>
-      <li>{{ form.first_name.label_tag }} {{ form.first_name }}</li>
-      <li>{{ form.last_name.label_tag }} {{ form.last_name }}</li>
-      <li>{{ form.email.label_tag }} {{ form.email }}</li>
-      <li>{{ form.phone_number.label_tag }} {{ form.phone_number }}</li>
-      <li>{{ form.city.label_tag }} {{ form.city }}</li>
-      <li>{{ form.picture.label_tag }} {{ form.picture }}</li>
-      <li>{{ form.title.label_tag }} {{ form.title }}</li>
-      <li>{{ form.scope.label_tag }} {{ form.scope }}</li>
+      <legend><strong>Personal Information:</strong></legend>
+      <ul>
+        <li>{{ form.user.label_tag }} {{ form.user }}</li>
+        <li>{{ form.first_name.label_tag }} {{ form.first_name }}</li>
+        <li>{{ form.last_name.label_tag }} {{ form.last_name }}</li>
+        <li>{{ form.email.label_tag }} {{ form.email }}</li>
+        <li>{{ form.phone_number.label_tag }} {{ form.phone_number }}</li>
+        <li>{{ form.city.label_tag }} {{ form.city }}</li>
+        <li>{{ form.picture }}</li>
+        <li>{{ form.title.label_tag }} {{ form.title }}</li>
+        <li>{{ form.scope.label_tag }} {{ form.scope }}</li>
+      </ul>
     </fieldset>
     <fieldset>
-      <legend>Education:</legend>
-      <li>{{ form.institution.label_tag }} {{ form.education_school }}</li>
-      <li>{{ form.education_program.label_tag }} {{ form.education_program }}</li>
-      
-    
+      <legend><strong>Education:</strong></legend>
+      {{ education_formset.management_form }}
+      {% for form in education_formset %}
+      <ul>
+        <li>{{ form.school.label_tag }} {{ form.school }}</li>
+            {{ form.program.label_tag }} {{ form.program }}
+            {{ form.date_from.label_tag }} {{ form.date_from }}
+            {{ form.date_until.label_tag }} {{ form.date_until }}
+            {{ form.school_name.label_tag }} {{ form.school_name }}
+            {{ form.degree.label_tag }} {{ form.degree }}
+        </ul>
+      {% endfor %}    
     </fieldset>
     <fieldset>
-      <legend>Work Experience:</legend>
-      <li>{{ form.first_name.label_tag }} {{ form.first_name }}</li>
-      
+      <legend><strong>Work Experience:</strong></legend>
+      {{ work_experience_formset.management_form }}
+      {% for form in work_experience_formset %}
+      <ul>
+      <li>{{ form.workplace_name.label_tag }} {{ form.workplace_name }}</li>
+          {{ form.date_from.label_tag }} {{ form.date_from }}
+          {{ form.date_until.label_tag }} {{ form.date_until }}
+          {{ form.duties.label_tag }} {{ form.duties }}
+      </ul>
+      {% endfor %}
     </fieldset>
     <fieldset>
-      <legend>Skills:</legend>
-      <li>{{ form.first_name.label_tag }} {{ form.first_name }}</li>
-      
+      <legend><strong>Skills:</strong></legend>
+      {{ skill_formset.management_form }}
+      {% for form in skill_formset %}
+      <ul>
+      <li>{{ form.skill.label_tag }} {{ form.skill }}</li>
+      </ul>
+      {% endfor %}
     </fieldset>
     <fieldset>
-      <legend>Summary:</legend>
-      <li>{{ form.first_name.label_tag }} {{ form.first_name }}</li>
-    
+      <legend><strong>Summary:</strong></legend>
+      {{ summary_formset.management_form }}
+      {% for form in summary_formset %}
+      <ul>
+      <li>{{ form.summary.label_tag }} {{ form.about_user }}</li>
+      </ul>
+      {% endfor %}
     </fieldset>
     <button type="submit">Update</button>
   </form>

@@ -12,7 +12,7 @@
         <ul>
             <li><a href="{% url 'create_cv' %}">Create new CV</a></li>
             {% for cv in user_cv %}
-                <li><a href="{% url 'update_cv' %}?cv_id={{ cv.pk }}">Update CV: {{ cv.title }}</a></li>
+                <li><a href="{% url 'update_cv' %}?cv_id={{ cv.pk }}">Update your CV: {{ cv.title }}</a></li>
             {% endfor %}
         </ul>
     {% else %}

@@ -5,15 +5,20 @@
   <img class="cv-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}" style="max-width: 200px; max-height: 200px;">
 {% endif %}
 <h2>Contacting information:</h2>
-<p>User: {{ cv.user }}</p>
-<ul>
-  <li><p>CV's title: {{ cv.title }}</p></li>
-  <li><p>First & Last name: {{ cv.first_name }} {{ cv.last_name }}</p></li>
-  <li><p>Email: {{ cv.email }}</p></li>
-  <li><p>Phone: {{ cv.country_code }} {{ cv.extention }}</p></li>
-  <li><p>City: {{ cv.city }}</p></li>
-  <li><p>Picture: {{ cv.picture }}</p></li>
-</ul>
+      <p>User: {{ cv.user }}</p>
+      <ul>
+        <li><p>CV's title: {{ cv.title }}</p></li>
+        <li><p>First & Last name: {{ cv.first_name }} {{ cv.last_name }}</p></li>
+        <li><p>Email: {{ cv.email }}</p></li>
+        <li><p>Phone: {{ cv.country_code }} {{ cv.extention }}</p></li>
+        <li><p>City: {{ cv.city }}</p></li>
+        {% comment %} <li><p>Picture:</p>
+        {% if cv.picture %}
+          <img class="cv-photo" src="{{ cv.picture.url }}" style="max-width: 200px; max-height: 200px;">
+        {% else %}
+          <img class="cv-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}" style="max-width: 200px; max-height: 200px;">
+        {% endif %}</li> {% endcomment %}
+      </ul>
 <h2>Education:</h2>
 <ul>
     {% for education in cv.education_set.all %}
