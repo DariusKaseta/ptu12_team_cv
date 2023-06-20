@@ -78,8 +78,6 @@ def create_cv(request):
 
 
 
-
-
 @login_required
 @csrf_protect
 def profile_update(request):
@@ -95,3 +93,18 @@ def profile_update(request):
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
     return render(request, 'user_profile/profile_update.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+@login_required
+def update_cv(request):
+    cv_id = request.GET.get("cv_id")
+    cv = get_object_or_404(CV, pk=cv_id, user=request.user)
+    
+    if request.method == "POST":
+        form = CvForm(request.POST, request.FILES, isinstance=cv)
+        if form.is_valid():
+            form.save()
+            return redirect('cv_details', pk=cv.pk)
+    else:
+        form = CvForm(instance=cv)
+    return render(request, 'user_profile/update_cv.html', {'form': form})
