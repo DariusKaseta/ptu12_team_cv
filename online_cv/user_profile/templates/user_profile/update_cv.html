@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Update CV{% endblock title %}
+{% block content %}
+  <h1>Update CV</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <fieldset>
+      <legend>Personal Information:</legend>
+      <li>{{ form.first_name.label_tag }} {{ form.first_name }}</li>
+      <li>{{ form.last_name.label_tag }} {{ form.last_name }}</li>
+      <li>{{ form.email.label_tag }} {{ form.email }}</li>
+      <li>{{ form.phone_number.label_tag }} {{ form.phone_number }}</li>
+      <li>{{ form.city.label_tag }} {{ form.city }}</li>
+      <li>{{ form.picture.label_tag }} {{ form.picture }}</li>
+      <li>{{ form.title.label_tag }} {{ form.title }}</li>
+      <li>{{ form.scope.label_tag }} {{ form.scope }}</li>
+    </fieldset>
+    <fieldset>
+      <legend>Education:</legend>
+      <li>{{ form.institution.label_tag }} {{ form.education_school }}</li>
+      <li>{{ form.education_program.label_tag }} {{ form.education_program }}</li>
+      
+    
+    </fieldset>
+    <fieldset>
+      <legend>Work Experience:</legend>
+      <li>{{ form.first_name.label_tag }} {{ form.first_name }}</li>
+      
+    </fieldset>
+    <fieldset>
+      <legend>Skills:</legend>
+      <li>{{ form.first_name.label_tag }} {{ form.first_name }}</li>
+      
+    </fieldset>
+    <fieldset>
+      <legend>Summary:</legend>
+      <li>{{ form.first_name.label_tag }} {{ form.first_name }}</li>
+    
+    </fieldset>
+    <button type="submit">Update</button>
+  </form>
+{% endblock content %}

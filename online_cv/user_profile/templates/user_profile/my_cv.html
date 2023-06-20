@@ -10,7 +10,10 @@
             {% endfor %}
         </ul>
         <ul>
-            <li><a href="{% url 'create_cv' %}">Add My CV</a></li>
+            <li><a href="{% url 'create_cv' %}">Create new CV</a></li>
+            {% for cv in user_cv %}
+                <li><a href="{% url 'update_cv' %}?cv_id={{ cv.pk }}">Update CV: {{ cv.title }}</a></li>
+            {% endfor %}
         </ul>
     {% else %}
         <p>No CVs found.</p>
