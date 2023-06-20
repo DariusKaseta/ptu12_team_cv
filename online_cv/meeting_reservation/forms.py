@@ -1,5 +1,9 @@
 from django import forms
 from .models import MeetingReservation
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 
 class DateTimeInput(forms.DateTimeInput):
@@ -7,10 +11,9 @@ class DateTimeInput(forms.DateTimeInput):
 
 
 class MeetingReservationForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, current_user, *args, **kwargs):
         super(MeetingReservationForm, self).__init__(*args, **kwargs)
-        # # self.fields['hr_representative'].widget = forms.HiddenInput()
-        # self.fields['hr_representative'].disabled = True
+        self.fields['hr_representative'].queryset = User.objects.filter(username=current_user)
 
     class Meta:
         model = MeetingReservation
