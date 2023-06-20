@@ -40,3 +40,6 @@
   .skill-item:not(:last-child) {
     margin-bottom: 50px;
   }
+  .float-right {
+    float: right;
+  }
