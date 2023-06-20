@@ -12,17 +12,18 @@ class HRRepresentative(models.Model):
         verbose_name_plural = _("hr representatives")
 
     def __str__(self):
-        return f"{self.user}"
+        return str(self.user)
     
     def get_absolute_url(self):
         return reverse("hrrepresentative_detail", kwargs={"pk": self.pk})
 
 
 class MeetingReservation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='meeting_reservations')
     hr_representative = models.ForeignKey(HRRepresentative, on_delete=models.CASCADE)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
+    parties = models.ManyToManyField(User, related_name='meeting_reservations_participations')
 
     class Meta:
         verbose_name = _("meeting reservation")

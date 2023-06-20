@@ -2,12 +2,15 @@
 {% load static %}
 {% block title %}CV's Details{% endblock title %}
 {% block content %}
-  <h1>CV's Details</h1>
-{% if cv.photo %}
+{% if user.is_superuser or user.hrrepresentative %}
+    <h2><a class="button float-right" href="{% url 'create_meeting_reservation' %}">Create Meeting Reservation</a></h2>
+{% endif %}
+<h1>CV's Details</h1>
+{% comment %} {% if cv.photo %}
   <img class="cv-photo" src="{{ cv.photo.url }}" style="max-width: 200px; max-height: 200px;">
 {% else %}
   <img class="cv-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}" style="max-width: 200px; max-height: 200px;">
-{% endif %}
+{% endif %} {% endcomment %}
 <h2>Contacting information:</h2>
       <p>User: {{ cv.user }}</p>
       <ul>
@@ -16,12 +19,12 @@
         <li><p>Email: {{ cv.email }}</p></li>
         <li><p>Phone: {{ cv.country_code }} {{ cv.extention }}</p></li>
         <li><p>City: {{ cv.city }}</p></li>
-        <li><p>Picture:</p>
+        {% comment %} <li><p>Picture:</p>
         {% if cv.picture %}
           <img class="cv-photo" src="{{ cv.picture.url }}" style="max-width: 200px; max-height: 200px;">
         {% else %}
-          <img class="cv-photo" src="{% static 'ptu12_team_cv/online_cv/media/online_cv/media/ptu12_cv/cv_pictures/naujas_vartotojo_veidas.jpeg' %}" style="max-width: 200px; max-height: 200px;">
-        {% endif %}</li>
+          <img class="cv-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}" style="max-width: 200px; max-height: 200px;">
+        {% endif %}</li> {% endcomment %}
       </ul>
 <h2>Education:</h2>
 <ul>
