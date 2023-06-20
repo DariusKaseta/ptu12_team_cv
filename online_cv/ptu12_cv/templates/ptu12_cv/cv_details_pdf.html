@@ -5,20 +5,15 @@
   <img class="cv-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}" style="max-width: 200px; max-height: 200px;">
 {% endif %}
 <h2>Contacting information:</h2>
-      <p>User: {{ cv.user }}</p>
-      <ul>
-        <li><p>CV's title: {{ cv.title }}</p></li>
-        <li><p>First & Last name: {{ cv.first_name }} {{ cv.last_name }}</p></li>
-        <li><p>Email: {{ cv.email }}</p></li>
-        <li><p>Phone: {{ cv.country_code }} {{ cv.extention }}</p></li>
-        <li><p>City: {{ cv.city }}</p></li>
-        {% comment %} <li><p>Picture:</p>
-        {% if cv.picture %}
-          <img class="cv-photo" src="{{ cv.picture.url }}" style="max-width: 200px; max-height: 200px;">
-        {% else %}
-          <img class="cv-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}" style="max-width: 200px; max-height: 200px;">
-        {% endif %}</li> {% endcomment %}
-      </ul>
+<p>User: {{ cv.user }}</p>
+<ul>
+  <li><p>CV's title: {{ cv.title }}</p></li>
+  <li><p>First & Last name: {{ cv.first_name }} {{ cv.last_name }}</p></li>
+  <li><p>Email: {{ cv.email }}</p></li>
+  <li><p>Phone: {{ cv.country_code }} {{ cv.extention }}</p></li>
+  <li><p>City: {{ cv.city }}</p></li>
+  <li><p>Picture: {{ cv.picture }}</p></li>
+</ul>
 <h2>Education:</h2>
 <ul>
     {% for education in cv.education_set.all %}
@@ -33,7 +28,7 @@
 </ul>
 <h2>Work Experience:</h2>
 <ul>
-  {% for experience in cv.work_experience_set.all %}
+  {% for experience in cv.workexperience_set.all %}
     <li><p>Workplace: {{ experience.workplace_name }}</p></li>
     <li><p>Main duties: {{ experience.duties }}</p></li>
     <li><p>Working period: {{ experience.date_from }} - {{ experience.date_until }}</p></li>
@@ -57,3 +52,4 @@
     <li><p>No summary available</p></li>
   {% endfor %}
 </ul>
+
