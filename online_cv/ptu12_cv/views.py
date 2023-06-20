@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from .models import CV, Education
+from .models import CV
 from django.db.models import Q
-import pdfkit
-from django.template.loader import get_template
+from django.template.loader import render_to_string
+import weasyprint
 
 
 
@@ -52,38 +52,20 @@ def cv_list(request):
     return render(request, 'ptu12_cv/cvs.html', {'cv_list': qs,
     })
 
-def cv_pdf_view(request, pk):
-    cv = get_object_or_404(CV, pk=pk)
-    context = {'cv': cv}
-    html = get_template('ptu12_cv/cv_details.html').render(context)
-    # html = get_template('cv_details.html').render(context)
 
 
-    pdf = pdfkit.from_string(html, False)
+def cv_pdf_view(request, cv_id):
+    cv = get_object_or_404(CV, id=cv_id)
 
+    context = {'cv' : cv}
+    html = render_to_string('ptu12_cv/cv_details_pdf.html', context)
 
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="cv.pdf"'
+    pdf = weasyprint.HTML(string=html).write_pdf()
+
+    response = HttpResponse(content_type = 'application/pdf')
+    response['Content-Disposition'] = 'attachment; filename= cv_details.pdf'
     response.write(pdf)
 
     return response
 
-
-# def cv_pdf_view(request, pk):
-#     # Fetch the CV object
-#     cv = get_object_or_404(CV, pk=pk)
-
-#     # Render the cv_detail.html template with the CV object
-#     context = {'cv': cv}
-#     html = render(request, 'cv_details.html', context).content
-
-#     # Generate the PDF using django-pdfkit
-#     pdf = pdfkit.from_string(html, False)
-
-#     # Create an HTTP response with PDF content for download
-#     response = HttpResponse(content_type='application/pdf')
-#     response['Content-Disposition'] = 'attachment; filename="cv.pdf"'
-#     response.write(pdf)
-
-#     return response
 

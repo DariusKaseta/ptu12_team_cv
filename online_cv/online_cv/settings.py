@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "meeting_reservation",
     "rest_framework",
     # "wkhtmltopdf",
+    'weasyprint',
     'phonenumber_field',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -142,3 +143,6 @@ EMAIL_HOST_PASSWORD = local_settings.EMAIL_HOST_PASSWORD
 PDFKIT_CONFIG = {
     'WKHTMLTOPDF_BINARY': '/usr/local/bin/wkhtmltopdf'
 }
+
+WEASYPRINT_BASEURL = '/'
+

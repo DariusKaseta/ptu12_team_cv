@@ -1,0 +1,46 @@
+{% load static %}
+{% if cv.photo %}
+  <img class="cv-photo" src="{{ cv.photo.url }}" style="max-width: 200px; max-height: 200px;">
+{% else %}
+  <img class="cv-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}" style="max-width: 200px; max-height: 200px;">
+{% endif %}
+<h2>Contacting information:</h2>
+<p>User: {{ cv.user }}</p>
+<ul>
+  <li><p>CV's title: {{ cv.title }}</p></li>
+  <li><p>First & Last name: {{ cv.first_name }} {{ cv.last_name }}</p></li>
+  <li><p>Email: {{ cv.email }}</p></li>
+  <li><p>Phone: {{ cv.country_code }} {{ cv.extention }}</p></li>
+  <li><p>City: {{ cv.city }}</p></li>
+  <li><p>Picture: {{ cv.picture }}</p></li>
+</ul>
+<h2>Education:</h2>
+<ul>
+  {% for education in user.educations.all %}
+    <li><p>Institution: {{ education.school }}</p></li>
+    <li><p>Program: {{ education.program }}</p></li>
+    <li><p>Institution name: {{ education.school_name }}</p></li>
+    <li><p>Obtained degree: {{ education.degree }}</p></li>
+    <li><p>Period: {{ education.date_from }} - {{ education.date_until }}</p></li>
+  {% endfor %}
+</ul>
+<h2>Work Experience:</h2>
+<ul>
+  {% for experience in user.work_experiences.all %}
+    <li><p>Workplace: {{ experience.workplace_name }}</p></li>
+    <li><p>Main duties: {{ experience.duties }}</p></li>
+    <li><p>Working period: {{ experience.date_from }} - {{ experience.date_until }}</p></li>
+  {% endfor %}
+</ul>
+<h2>Skills:</h2>
+<ul>
+  {% for skill in user.skills.all %}
+    <li><p>Job related skills: {{ skill.skill }}</p></li>
+  {% endfor %}
+</ul>
+<h2>Summary:</h2>
+<ul>
+  {% for summary in user.summaries.all %}
+    <li><p>Profile summary: {{ summary.about_user }}</p></li>
+  {% endfor %}
+</ul>
