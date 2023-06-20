@@ -11,3 +11,4 @@ urlpatterns = [
     path('my-cv/', my_cv, name='my_cv'),
     path('create-cv/', create_cv, name='create_cv'),
     path('profile/update/', views.profile_update, name='profile_update'),
+]
