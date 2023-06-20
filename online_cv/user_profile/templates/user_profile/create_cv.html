@@ -2,9 +2,40 @@
 {% block title %}Create Your CV{% endblock title %}
 {% block content %}
     <h1> Create CV </h1>
-    <form method="post" action="{%url 'create_cv'%}">
+    <form method="post" action="{% url 'create_cv' %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+       
+       
+        {{ education_formset.management_form }}
+        <div id="education-formset">
+          {% for form in education_formset %}
+            {{ form.as_table }}
+          {% endfor %}
+        </div>
+        <button type="button" id="add-education-form">Add Education</button>
+        
+        {{ work_experience_formset.management_form }}
+        <div id="work-experience-formset">
+            {% for form in work_experience_formset %}
+                {{ form.as_table }}
+            {% endfor %}
+        </div>
+        <button type="button" id="add-work-experience-form">Add Work Experience</button>
+    
+        {{ skill_formset.management_form }}
+        <div id="skill-formset">
+            {% for form in skill_formset %}
+                {{ form.as_table }}
+            {% endfor %}
+        </div>
+        <button type="button" id="add-skill-form">Add Skill</button>
+    
+    
+    <button type="submit">Submit</button>
+</form>
+    
+
+
+
 {% endblock content %}
