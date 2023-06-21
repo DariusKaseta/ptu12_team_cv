@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django import forms
 from . import models
-from ptu12_cv.models import CV, Skill, Education, WorkExperience, Summary
+from ptu12_cv.models import CV, Skill, Education, WorkExperience
 from django.forms import formset_factory, inlineformset_factory
 
 
@@ -26,24 +26,14 @@ SkillFormSet = inlineformset_factory(
     extra=1,
     can_delete=True
 )
-SummaryFormSet = inlineformset_factory(
-    CV,
-    Summary,
-    fields=('about_user',),
-    extra=1,
-    can_delete=True
-)
 
 
 
 class CvForm(forms.ModelForm):
-    summary_about_user = forms.CharField(label=("About User"), max_length=500, widget=forms.Textarea)
 
-    
-    
     class Meta:
         model = CV
-        fields = ("user", "title", "first_name", "last_name", "email", "phone_number", "city", "picture", "scope")
+        fields = ("user", "title", "first_name", "last_name", "email", "phone_number", "city", "picture", "scope", "about_user")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -56,6 +46,7 @@ class CvForm(forms.ModelForm):
         self.fields['city'].required = True
         # self.fields['picture'].required = True
         self.fields['scope'].required = True
+        self.fields["about_user"].required = True
 
 
 
@@ -99,14 +90,6 @@ class CvForm(forms.ModelForm):
                 user=cv.user,
                 skill=skill_set_skill)
             skill_set.save()
-
-
-            summary_about_user = self.cleaned_data['summary_about_user']
-            summary = Summary(
-                cv=cv,
-                user=cv.user,
-                about_user=summary_about_user)
-            summary.save()
         return cv
 
 

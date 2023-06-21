@@ -3,9 +3,9 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_protect
-from ptu12_cv.models import CV, Education, WorkExperience, Skill, Summary
+from ptu12_cv.models import CV, Education, WorkExperience, Skill
 from .forms import CvForm
-from .forms import ProfileUpdateForm, UserUpdateForm, EducationFormSet, WorkExperienceFormSet, SkillFormSet, SummaryFormSet
+from .forms import ProfileUpdateForm, UserUpdateForm, EducationFormSet, WorkExperienceFormSet, SkillFormSet
 from django.forms import inlineformset_factory
 from django.http import HttpResponseBadRequest
 
@@ -140,26 +140,26 @@ def update_cv(request):
     EducationFormSet = inlineformset_factory(CV, Education, fields=('program', 'date_from', 'date_until', 'school', 'school_name', 'degree'), extra=0, can_delete=True)
     WorkExperienceFormSet = inlineformset_factory(CV, WorkExperience, fields=('workplace_name', 'date_from', 'date_until', 'duties'), extra=0, can_delete=True)
     SkillFormSet = inlineformset_factory(CV, Skill, fields=('skill',), extra=0, can_delete=True)
-    SummaryFormSet = inlineformset_factory(CV, Summary, fields=("about_user",), extra=0, can_delete=True)
+    
     
     if request.method == "POST":
         form = CvForm(request.POST, request.FILES, instance=cv)
         education_formset = EducationFormSet(request.POST, prefix='education', instance=cv)
         work_experience_formset = WorkExperienceFormSet(request.POST, prefix='work_experience', instance=cv)
         skill_formset = SkillFormSet(request.POST, prefix='skill', instance=cv)
-        summary_formset = SummaryFormSet(request.POST, prefix='summary', instance=cv)
         
-        if form.is_valid() and education_formset.is_valid() and work_experience_formset.is_valid() and skill_formset.is_valid() and summary_formset.is_valid():
+        
+        if form.is_valid() and education_formset.is_valid() and work_experience_formset.is_valid() and skill_formset.is_valid():
             cv = form.save()
             education_formset.instance = cv
             work_experience_formset.instance = cv
             skill_formset.instance = cv
-            summary_formset.instance = cv
+            
 
             education_formset.save()
             work_experience_formset.save()
             skill_formset.save()
-            summary_formset.save()
+            
             
             return redirect('cv_details', pk=cv.pk)
         else:
@@ -167,7 +167,6 @@ def update_cv(request):
             print(education_formset.errors)
             print(work_experience_formset.errors)
             print(skill_formset.errors)
-            print(summary_formset.errors)
             return HttpResponseBadRequest("Couldn't update form, try again.")
     
     else:
@@ -175,14 +174,13 @@ def update_cv(request):
         education_formset = EducationFormSet(prefix='education', instance=cv)
         work_experience_formset = WorkExperienceFormSet(prefix='work_experience', instance=cv)
         skill_formset = SkillFormSet(prefix='skill', instance=cv)
-        summary_formset = SummaryFormSet(prefix='summary', instance=cv)
+        
     
     return render(request, 'user_profile/update_cv.html', {
         'form': form,
         "education_formset": education_formset,
         "work_experience_formset": work_experience_formset,
         "skill_formset": skill_formset,
-        "summary_formset": summary_formset
     })
 
     

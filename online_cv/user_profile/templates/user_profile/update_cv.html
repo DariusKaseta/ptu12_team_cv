@@ -16,6 +16,7 @@
         <li>{{ form.picture }}</li>
         <li>{{ form.title.label_tag }} {{ form.title }}</li>
         <li>{{ form.scope.label_tag }} {{ form.scope }}</li>
+        <li>{{ form.about_user.label_tag }} {{ form.about_user }}</li>
       </ul>
     </fieldset>
     <fieldset>
@@ -23,13 +24,8 @@
       {{ education_formset.management_form }}
       {% for form in education_formset %}
       <ul>
-        <li>{{ form.school.label_tag }} {{ form.school }}</li>
-            {{ form.program.label_tag }} {{ form.program }}
-            {{ form.date_from.label_tag }} {{ form.date_from }}
-            {{ form.date_until.label_tag }} {{ form.date_until }}
-            {{ form.school_name.label_tag }} {{ form.school_name }}
-            {{ form.degree.label_tag }} {{ form.degree }}
-        </ul>
+        <li>{{ form }}</li>
+      </ul>
       {% endfor %}    
     </fieldset>
     <fieldset>
@@ -37,10 +33,7 @@
       {{ work_experience_formset.management_form }}
       {% for form in work_experience_formset %}
       <ul>
-      <li>{{ form.workplace_name.label_tag }} {{ form.workplace_name }}</li>
-          {{ form.date_from.label_tag }} {{ form.date_from }}
-          {{ form.date_until.label_tag }} {{ form.date_until }}
-          {{ form.duties.label_tag }} {{ form.duties }}
+      <li>{{ form }}</li>
       </ul>
       {% endfor %}
     </fieldset>
@@ -49,16 +42,7 @@
       {{ skill_formset.management_form }}
       {% for form in skill_formset %}
       <ul>
-      <li>{{ form.skill.label_tag }} {{ form.skill }}</li>
-      </ul>
-      {% endfor %}
-    </fieldset>
-    <fieldset>
-      <legend><strong>Summary:</strong></legend>
-      {{ summary_formset.management_form }}
-      {% for form in summary_formset %}
-      <ul>
-      <li>{{ form.summary.label_tag }} {{ form.about_user }}</li>
+      <li>{{ form }}</li>
       </ul>
       {% endfor %}
     </fieldset>

@@ -42,10 +42,10 @@ class Education(models.Model):
     
     
     SCHOOL_CHOICES = (
-        ("Middle", _("Middle School")),
-        ("High", _("High School")),
+        ("Middle School", _("Middle School")),
+        ("High School", _("High School")),
         ("Home Schooling", _("Home Schooling")),
-        ("Vocational", _("Vocational School")),
+        ("Vocational School", _("Vocational School")),
         ("University/College", _("University/College")),
     )
 
@@ -69,7 +69,7 @@ class Education(models.Model):
 class Skill(models.Model):
     user = models.ForeignKey(User, verbose_name=_("user"), related_name = "skills", on_delete=models.CASCADE)
     cv = models.ForeignKey("CV", verbose_name=_("cv"), on_delete=models.CASCADE)
-    skill = models.CharField(_("skill"), max_length=100, db_index=True)
+    skill = models.TextField(_("skill"), max_length=4000)
 
     class Meta:
         verbose_name = _("skill")
@@ -80,22 +80,6 @@ class Skill(models.Model):
 
     def get_absolute_url(self):
         return reverse("skill_detail", kwargs={"pk": self.pk})
-    
-
-class Summary(models.Model):
-    user = models.ForeignKey(User, verbose_name=_("user"), related_name = "summaries", on_delete=models.CASCADE)
-    cv = models.ForeignKey("CV", verbose_name=_("cv"), on_delete=models.CASCADE)
-    about_user = models.TextField(_("about_user"), max_length=500)
-
-    class Meta:
-        verbose_name = _("summary")
-        verbose_name_plural = _("summaries")
-
-    def __str__(self):
-        return f"{self.user}"
-
-    def get_absolute_url(self):
-        return reverse("summary_detail", kwargs={"pk": self.pk})
 
 
 class CV(models.Model):
@@ -109,11 +93,12 @@ class CV(models.Model):
     city = models.CharField(_("city"), max_length=100, db_index=True)
     picture = models.ImageField(_("picture"), upload_to="online_cv/media/ptu12_cv/cv_pictures", null=True, blank=True)
     title = models.CharField(_("title"), max_length=100)
+    about_user = models.TextField(_("about_user"), max_length=4000, null=True, blank=True)
 
     SCOPE_CHOICES = (
         ("IT", _("IT")),
         ("Marketing", _("Marketing")),
-        ("Book_Keeping", _("Book Keeping")),
+        ("Book Keeping", _("Book Keeping")),
         ("Medicine", _("Medicine")),
         ("Human Resources", _("Human Resources")),
         ("Education", _("Education")),
@@ -123,7 +108,7 @@ class CV(models.Model):
         ("Agro Culture", _("Agro Culture")),
         ("Biology", _("Biology")),
         ("Linguistics", _("Linguistics")),
-        ("Service_Management", _("Service Management")),
+        ("Service Management", _("Service Management")),
         ("Graphic Design", _("Graphic Design")),
         ("Other", _("Other"))
         )
