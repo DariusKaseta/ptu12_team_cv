@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     "meeting_reservation",
     "rest_framework",
     # "wkhtmltopdf",
-    'weasyprint',
+    # 'weasyprint',
     'phonenumber_field',
     'django.contrib.admin',
     'django.contrib.auth',

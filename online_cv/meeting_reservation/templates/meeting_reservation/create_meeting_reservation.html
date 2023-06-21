@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}Create meeting reservation{% endblock title %}
+
+{% block title %}Create Meeting Reservation{% endblock title %}
 
 {% block content %}
-  <h1>Create meeting reservation</h1>
+  <h1>Create Meeting Reservation</h1>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Create reservation</button>
+    <button type="submit">Create Reservation</button>
   </form>
 {% endblock content %}

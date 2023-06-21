@@ -3,7 +3,10 @@ from django.shortcuts import render, get_object_or_404
 from .models import CV
 from django.db.models import Q
 from django.template.loader import render_to_string
-import weasyprint
+
+
+
+
 
 
 
@@ -50,18 +53,19 @@ def cv_list(request):
 
 
 
-def cv_pdf_view(request, cv_id):
-    cv = get_object_or_404(CV, id=cv_id)
+# pdfkit.from_url('http://weasyprint.org', 'weasyprint.pdf')
+# def cv_pdf_view(request, cv_id):
+#     cv = get_object_or_404(CV, id=cv_id)
 
-    context = {'cv' : cv}
-    html = render_to_string('ptu12_cv/cv_details_pdf.html', context)
+#     context = {'cv' : cv}
+#     html = render_to_string('ptu12_cv/cv_details_pdf.html', context)
 
-    pdf = weasyprint.HTML(string=html).write_pdf()
+#     pdf = weasyprint.HTML(string=html).write_pdf()
 
-    response = HttpResponse(content_type = 'application/pdf')
-    response['Content-Disposition'] = 'attachment; filename= cv_details.pdf'
-    response.write(pdf)
+#     response = HttpResponse(content_type = 'application/pdf')
+#     response['Content-Disposition'] = 'attachment; filename= cv_details.pdf'
+#     response.write(pdf)
 
-    return response
+#     return response
 
 
