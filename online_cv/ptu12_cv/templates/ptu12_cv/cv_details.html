@@ -10,3 +10,10 @@
     {% endif %}
     {% include 'ptu12_cv/cv_details_pdf.html' %}
 {% endblock content %}
+  <h1>CV's Details</h1>
+    {% if user.is_superuser or user.hrrepresentative %}
+        <h2><a class="button float-right" href="{% url 'create_meeting_reservation' %}">Create Meeting Reservation</a></h2>
+    {% endif %}
+  {% include 'ptu12_cv/cv_details_pdf.html' %} 
+  <a href="{% url 'cv_details_pdf' cv_id=cv.pk %}">Generate PDF</a>
+{% endblock content %}

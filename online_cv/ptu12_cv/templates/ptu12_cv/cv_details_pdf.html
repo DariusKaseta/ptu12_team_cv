@@ -16,31 +16,40 @@
 </ul>
 <h2>Education:</h2>
 <ul>
-  {% for education in user.educations.all %}
+    {% for education in cv.education_set.all %}
     <li><p>Institution: {{ education.school }}</p></li>
     <li><p>Program: {{ education.program }}</p></li>
     <li><p>Institution name: {{ education.school_name }}</p></li>
     <li><p>Obtained degree: {{ education.degree }}</p></li>
     <li><p>Period: {{ education.date_from }} - {{ education.date_until }}</p></li>
+  {% empty %}
+    <li><p>No education information available</p></li>
   {% endfor %}
 </ul>
 <h2>Work Experience:</h2>
 <ul>
-  {% for experience in user.work_experiences.all %}
+  {% for experience in cv.workexperience_set.all %}
     <li><p>Workplace: {{ experience.workplace_name }}</p></li>
     <li><p>Main duties: {{ experience.duties }}</p></li>
     <li><p>Working period: {{ experience.date_from }} - {{ experience.date_until }}</p></li>
+  {% empty %}
+    <li><p>No work experience available</p></li>
   {% endfor %}
 </ul>
 <h2>Skills:</h2>
 <ul>
-  {% for skill in user.skills.all %}
+  {% for skill in cv.skill_set.all %}
     <li><p>Job related skills: {{ skill.skill }}</p></li>
+  {% empty %}
+    <li><p>No skills available</p></li>
   {% endfor %}
 </ul>
 <h2>Summary:</h2>
 <ul>
-  {% for summary in user.summaries.all %}
+  {% for summary in cv.summary_set.all %}
     <li><p>Profile summary: {{ summary.about_user }}</p></li>
+  {% empty %}
+    <li><p>No summary available</p></li>
   {% endfor %}
-{% comment %} </ul> {% endcomment %}
+</ul>
+

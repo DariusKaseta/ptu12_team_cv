@@ -3,8 +3,11 @@ from django.shortcuts import render, get_object_or_404
 from .models import CV
 from django.db.models import Q
 from django.template.loader import render_to_string
-# import weasyprint
-# import pdfkit
+
+
+
+
+
 
 
 def base_view(request):
