@@ -2,4 +2,14 @@
 {% load static %}
 {% block title %}CV's Details{% endblock title %}
 {% block content %}
+  <h1>CV's Details</h1>
+  <p>User: {{ cv.user }}</p>
+  {% include 'ptu12_cv/cv_details_pdf.html' %} 
+  <a href="{% url 'cv_details_pdf' cv_id=cv.pk %}">Generate PDF</a> 
+  <ul>
+    <li><a href="{% url 'create_cv' %}">Create new CV</a></li>
+  </ul>
+  <ul>
+      <li><a href="{% url 'update_cv' %}?cv_id={{ cv.pk }}">Update your CV</a></li>
+  </ul>
 {% endblock content %}

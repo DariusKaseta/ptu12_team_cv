@@ -100,6 +100,13 @@ class CvForm(forms.ModelForm):
                 skill=skill_set_skill)
             skill_set.save()
 
+
+            summary_about_user = self.cleaned_data['summary_about_user']
+            summary = Summary(
+                cv=cv,
+                user=cv.user,
+                about_user=summary_about_user)
+            summary.save()
         return cv
 
 

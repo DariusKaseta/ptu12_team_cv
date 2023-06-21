@@ -20,7 +20,7 @@ class WorkExperience(models.Model):
     workplace_name = models.CharField(_("workplace_name"), max_length=100, db_index=True)
     date_from = models.DateField(_("date_from"), default=timezone.now)
     date_until = models.DateField(_("date_until"), default=timezone.now)
-    duties = models.CharField(_("duties"), max_length=100, db_index=True)
+    duties = models.TextField(_("duties"), max_length=100, db_index=True)
 
     class Meta:
         verbose_name = _("work experience")
