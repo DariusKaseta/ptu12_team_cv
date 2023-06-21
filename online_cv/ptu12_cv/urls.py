@@ -11,7 +11,7 @@ urlpatterns = [
     path("participle/", views.cv_participles_view, name="participle_view"),
     # path('cv/<int:cv_id>/generate-pdf/', views.cv_pdf_view, name='cv_details_pdf'),
     # path('CVs/update/', views.update_cv, name='update_cv'),
-    path('cv/<int:cv_id>/generate-pdf/', views.cv_pdf_view, name='cv_details_pdf'),
+    # path('cv/<int:cv_id>/generate-pdf/', views.cv_pdf_view, name='cv_details_pdf'),
 
 
     

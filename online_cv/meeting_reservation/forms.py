@@ -1,6 +1,9 @@
 from django import forms
 from .models import MeetingReservation
+from django.contrib.auth import get_user_model
+from .models import HRRepresentative
 
+User = get_user_model()
 
 class DateTimeInput(forms.DateTimeInput):
     input_type = 'datetime-local'
@@ -14,12 +17,6 @@ class MeetingReservationForm(forms.ModelForm):
         self.fields['hr_representative'].queryset = HRRepresentative.objects.filter(user=self.current_user)
         self.fields['hr_representative'].initial = HRRepresentative.objects.filter(user=self.current_user).first()
         self.fields['parties'].choices = [(self.cv_user.pk, self.cv_user.get_full_name()), (self.current_user.pk, self.current_user.get_full_name())]
-    def init(self, current_user, args, **kwargs):
-        super(MeetingReservationForm, self).init(args, **kwargs)
-        self.fields['hr_representative'].queryset = User.objects.filter(username=current_user)
-        self.fields['parties'].choices = [(current_user.pk, current_user.get_full_name()),
-                                          (self.fields['hr_representative'].queryset.first().pk,
-                                           self.fields['hr_representative'].queryset.first().get_full_name())]
 
     class Meta:
         model = MeetingReservation
