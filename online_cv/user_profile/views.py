@@ -159,22 +159,19 @@ def update_cv(request):
             education_formset.save()
             work_experience_formset.save()
             skill_formset.save()
-            
-            
             return redirect('cv_details', pk=cv.pk)
         else:
-            print(form.errors)
-            print(education_formset.errors)
-            print(work_experience_formset.errors)
-            print(skill_formset.errors)
-            return HttpResponseBadRequest("Couldn't update form, try again.")
+            # print(form.errors)
+            # print(education_formset.errors)
+            # print(work_experience_formset.errors)
+            # print(skill_formset.errors)
+            return HttpResponseBadRequest("Couldn't update form! Try again.")
     
     else:
         form = CvForm(instance=cv)
         education_formset = EducationFormSet(prefix='education', instance=cv)
         work_experience_formset = WorkExperienceFormSet(prefix='work_experience', instance=cv)
         skill_formset = SkillFormSet(prefix='skill', instance=cv)
-        
     
     return render(request, 'user_profile/update_cv.html', {
         'form': form,
