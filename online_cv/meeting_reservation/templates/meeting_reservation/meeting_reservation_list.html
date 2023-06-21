@@ -6,7 +6,11 @@
 {% block content %}
     <h1>Meeting Reservations</h1>
     {% if user.is_superuser or user.hrrepresentative %}
-    <h2><a class="button float-right" href="{% url 'create_meeting_reservation' %}">Create Meeting Reservation</a></h2>
+        {% if cv_user_id %}
+            <h2><a href="{% url 'create_meeting_reservation' cv_user_id=user.id %}">Create Meeting Reservation</a></h2>
+        {% else %}
+            <h2><a href="{% url 'create_meeting_reservation' cv_user_id=user.id %}">Create Meeting Reservation</a></h2>
+        {% endif %}
     {% endif %}
     {% if reservations %}
         <ul>
