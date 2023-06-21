@@ -5,13 +5,6 @@
 
 {% block content %}
     <h1>Meeting Reservations</h1>
-    {% if user.is_superuser or user.hrrepresentative %}
-        {% if cv_user_id %}
-            <h2><a href="{% url 'create_meeting_reservation' cv_user_id=user.id %}">Create Meeting Reservation</a></h2>
-        {% else %}
-            <h2><a href="{% url 'create_meeting_reservation' cv_user_id=user.id %}">Create Meeting Reservation</a></h2>
-        {% endif %}
-    {% endif %}
     {% if reservations %}
         <ul>
             {% for reservation in reservations %}
@@ -21,6 +14,8 @@
                         <p>HR Representative: {{ reservation.hr_representative }}</p>
                         <p>Start Time: {{ reservation.start_time }}</p>
                         <p>End Time: {{ reservation.end_time }}</p>
+                        <a href="{% url 'delete_meeting' meeting_id=reservation.id %}">Delete</a>
+                        <a href="{% url 'update_meeting' meeting_id=reservation.id %}">Update</a>
                     </li>
                 {% endif %}
             {% empty %}

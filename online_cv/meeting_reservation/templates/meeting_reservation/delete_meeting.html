@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Meeting{% endblock title %}
+
+{% block content %}
+  <h1>Delete Meeting</h1>
+  <p>Are you sure you want to delete the meeting?</p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+    <a href="{% url 'meeting_reservation_list' %}">Cancel</a>
+  </form>
+{% endblock content %}
