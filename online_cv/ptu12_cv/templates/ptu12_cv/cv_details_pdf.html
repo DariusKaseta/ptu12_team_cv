@@ -51,12 +51,3 @@
 {% endif %}
 
 
-{% if cv.summary_set.exists %}
-    <h2>Summary:</h2>
-    <ul>
-        {% for summary in cv.summary_set.all %}
-            <li><p>Profile summary: {{ summary.about_user }}</p></li>
-        {% endfor %}
-    </ul>
-{% endif %}
-
