@@ -1,19 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %} My CVs {% endblock title %}
 {% block content %}
     <h1>My CVs</h1>
     {% if user_cv|length > 0 %}
         <ul>
             {% for cv in user_cv %}
-                <a href="{% url 'cv_details' cv.pk %}">
-                <li>{{ cv.title }}</li>
+                <li>
+                    {% if cv.photo %}
+                        <img class="cv-photo" src="{{ cv.photo.url }}">
+                    {% else %}
+                            <img class="cv-photo default-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}">
+                        {% endif %}
+                        <a href="{% url 'cv_details' cv.pk %}">
+                        {{ cv.title }}
+                    </a>
+                </li>
             {% endfor %}
         </ul>
         <ul>
             <li><a href="{% url 'create_cv' %}">Create new CV</a></li>
-            {% for cv in user_cv %}
-                <li><a href="{% url 'update_cv' %}?cv_id={{ cv.pk }}">Update your CV: {{ cv.title }}</a></li>
-            {% endfor %}
         </ul>
     {% else %}
         <p>No CVs found.</p>

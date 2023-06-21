@@ -1,11 +1,9 @@
 {% load static %}
-{% if cv.photo %}
+
+{% if cv.photo.exists %}
   <img class="cv-photo" src="{{ cv.photo.url }}" style="max-width: 200px; max-height: 200px;">
-{% else %}
-  <img class="cv-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}" style="max-width: 200px; max-height: 200px;">
 {% endif %}
 <h2>Contacting information:</h2>
-<p>User: {{ cv.user }}</p>
 <ul>
   <li><p>CV's title: {{ cv.title }}</p></li>
   <li><p>First & Last name: {{ cv.first_name }} {{ cv.last_name }}</p></li>
@@ -14,42 +12,50 @@
   <li><p>City: {{ cv.city }}</p></li>
   <li><p>Picture: {{ cv.picture }}</p></li>
 </ul>
-<h2>Education:</h2>
-<ul>
-    {% for education in cv.education_set.all %}
-    <li><p>Institution: {{ education.school }}</p></li>
-    <li><p>Program: {{ education.program }}</p></li>
-    <li><p>Institution name: {{ education.school_name }}</p></li>
-    <li><p>Obtained degree: {{ education.degree }}</p></li>
-    <li><p>Period: {{ education.date_from }} - {{ education.date_until }}</p></li>
-  {% empty %}
-    <li><p>No education information available</p></li>
-  {% endfor %}
-</ul>
-<h2>Work Experience:</h2>
-<ul>
-  {% for experience in cv.workexperience_set.all %}
-    <li><p>Workplace: {{ experience.workplace_name }}</p></li>
-    <li><p>Main duties: {{ experience.duties }}</p></li>
-    <li><p>Working period: {{ experience.date_from }} - {{ experience.date_until }}</p></li>
-  {% empty %}
-    <li><p>No work experience available</p></li>
-  {% endfor %}
-</ul>
-<h2>Skills:</h2>
-<ul>
-  {% for skill in cv.skill_set.all %}
-    <li><p>Job related skills: {{ skill.skill }}</p></li>
-  {% empty %}
-    <li><p>No skills available</p></li>
-  {% endfor %}
-</ul>
-<h2>Summary:</h2>
-<ul>
-  {% for summary in cv.summary_set.all %}
-    <li><p>Profile summary: {{ summary.about_user }}</p></li>
-  {% empty %}
-    <li><p>No summary available</p></li>
-  {% endfor %}
-</ul>
+
+
+{% if cv.education_set.exists %}
+    <h2>Education:</h2>
+    <ul>
+        {% for education in cv.education_set.all %}
+            <li><p>Institution: {{ education.school }}</p></li>
+            <li><p>Program: {{ education.program }}</p></li>
+            <li><p>Institution name: {{ education.school_name }}</p></li>
+            <li><p>Obtained degree: {{ education.degree }}</p></li>
+            <li><p>Period: {{ education.date_from }} - {{ education.date_until }}</p></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+{% if cv.workexperience_set.exists %}
+    <h2>Work Experience:</h2>
+    <ul>
+        {% for experience in cv.workexperience_set.all %}
+            <li><p>Workplace: {{ experience.workplace_name }}</p></li>
+            <li><p>Main duties: {{ experience.duties }}</p></li>
+            <li><p>Working period: {{ experience.date_from }} - {{ experience.date_until }}</p></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+{% if cv.skill_set.exists %}
+    <h2>Skills:</h2>
+    <ul>
+        {% for skill in cv.skill_set.all %}
+            <li><p>Job related skills: {{ skill.skill }}</p></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+{% if cv.summary_set.exists %}
+    <h2>Summary:</h2>
+    <ul>
+        {% for summary in cv.summary_set.all %}
+            <li><p>Profile summary: {{ summary.about_user }}</p></li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
