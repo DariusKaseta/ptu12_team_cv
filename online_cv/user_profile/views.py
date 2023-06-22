@@ -60,15 +60,15 @@ def signup(request):
     return render(request, 'user_profile/signup.html')
 
 
-@login_required
-def my_cv(request):
-    user_cv = CV.objects.filter(user=request.user)
-    return render(request, 'user_profile/my_cv.html', {'user_cv':user_cv})
+# @login_required
+# def my_cv(request):
+#     user_cv = CV.objects.filter(user=request.user)
+#     return render(request, 'user_profile/my_cv.html', {'user_cv':user_cv})
 
 @login_required
 def my_cv(request):
     user_cv = CV.objects.filter(user=request.user)
-    paginator = Paginator(user_cv, 5)  
+    paginator = Paginator(user_cv, 1000)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -95,7 +95,7 @@ def create_cv(request):
             skill_formset = SkillFormSet(request.POST, instance=cv, prefix= 'skill' )
 
             if education_formset.is_valid() and work_experience_formset.is_valid() and skill_formset.is_valid():
-                cv.save()
+                
 
                 for education_form in education_formset:
                     education_form.instance.user = request.user
