@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
@@ -7,6 +6,7 @@ from ptu12_cv.models import CV, Education, WorkExperience, Skill
 from .forms import CvForm
 from .forms import ProfileUpdateForm, UserUpdateForm, EducationFormSet, WorkExperienceFormSet, SkillFormSet
 from django.forms import inlineformset_factory
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseBadRequest
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -200,7 +200,7 @@ def update_cv(request):
     })
 
 
-    
+@login_required
 def my_cv_search(request):
     query = request.GET.get('query')
     search_results = CV.objects.filter(
@@ -212,7 +212,5 @@ def my_cv_search(request):
         Q(title__icontains = query)
     )
     return render(request, "ptu12_cv/includes/cv_participles_search.html", {'cvs': search_results, 'query':query})
-
-
 
 

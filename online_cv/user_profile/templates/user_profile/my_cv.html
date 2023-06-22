@@ -6,21 +6,17 @@
     {% if user_cv|length > 0 %}
         <div class="cv-container">
             {% for cv in page_obj %}
-                <div class="cv">
                     {% if cv.photo %}
                         <img class="cv-photo" src="{{ cv.photo.url }}">
                     {% else %}
                         <img class="cv-photo default-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}">
                     {% endif %}
-                    <h3 class="cv-name">
-                        <a href="{% url 'cv_details' cv.pk %}">{{ cv.title }}</a>
-                    </h3>
-                </div>
             {% endfor %}
         </div>
     {% else %}
         <ul>
             <a href="{% url 'create_cv' %}">Create new CV</a>
         </ul>
+
     {% endif %}
 {% endblock %}

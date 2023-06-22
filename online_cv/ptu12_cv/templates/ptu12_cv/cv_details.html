@@ -19,5 +19,8 @@
     <ul>
       <a href="{% url 'update_cv' %}?cv_id={{ cv.pk }}">Update your CV</a>
     </ul>
-    {% endif %}
+    <ul>
+      <a href="{% url 'delete-cv' cv_id=cv.id %}">Delete CV</a>
+    </ul>
+    {%endif%}
 {% endblock content %}
