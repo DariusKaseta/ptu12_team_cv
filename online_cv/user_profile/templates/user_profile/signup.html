@@ -13,7 +13,7 @@
         <input type="text" name="last_name" value="{{ request.POST.last_name }}">
     </p>
     <p>
-        <label for="username">Username"</label>
+        <label for="username">Username</label>
         <input type="text" name="username" required value="{{ request.POST.username }}">
         <br><small>Case sensitive, must be unique.</small>
     </p>
@@ -31,6 +31,6 @@
     </p>
     <p><button type="submit">Confirm sign up</button></p>
     
-    <p>If you have already an account, you can <a href="{% url 'login' %}">login</a> instead.</p>
+    <p>If you have already an account, you can <a href="{% url 'login' %}">Login</a> instead.</p>
 </form>
 {% endblock content %}
