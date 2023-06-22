@@ -148,3 +148,41 @@ p, h1, h2, h3, h4, h5, h6 {
 .workexperience-separator {
   margin-bottom: 20px;
 }
+
+
+.pagination  {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.pagination  ul {
+  list-style-type: none;
+  display: inline-flex;
+  padding: 0;
+  margin: 10;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #000;
+  background-color: #000000;
+  border: 1px solid #090909;
+  border-radius: 3px;
+}
+
+.pagination .active a {
+  background-color: #007bff;
+  color: #050505;
+}
+
+.pagination a:hover {
+  background-color: #007bff;
+  color: #fff;
+}

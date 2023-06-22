@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Participles Overview{% endblock title %}
+{%  load static %}
+
+
 {% block content %}
   <h1>Participles Overview</h1>
 
@@ -7,36 +10,35 @@
     <input type="text" name="query" placeholder="Search CVs">
     <button type="submit">Search</button>
   </form>
+
+  {% include 'includes/paginator_nav.html' %}
   
-{% include 'includes/paginator_nav.html' %}
   <ul>
     {% for participle in page_obj %}
-      <li>
-        <a href="{% url 'cv_details' pk=participle.pk %}">{{ participle.first_name }} - {{ participle.last_name }} - {{ participle.city }} - {{ participle.scope }} </a>
-      </li>
-    {% endfor %}
-  </ul>
-{% endblock %}
-  { <div class="container pagination">
-      {% if CVs.has_other_pages %}
-        <ul class="pagination pagination-sm justify-content-end">
-          {% for i in CVs.paginator.page_range %}
-            {% if CVs.number == i %}
-              <li class="page-item active">
-                <a class="page-link">{{ i }}</a>
-              </li>
-            {% else %}
-              <li class="page-item">
-                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </nav>
-  </div>
+       <li>
+         <a href="{% url 'cv_details' pk=participle.pk %}">{{ participle.first_name }} - {{ participle.last_name }} - {{ participle.city }} - {{ participle.scope }} </a>
+       </li>
+     {% endfor %}
+   </ul>
+ {% endblock %}
 
-  
-  
-  
-  
+ <link rel="stylesheet" href="{% static 'ptu12_cv/css/style.css' %}">
+
+
+    <div class="container pagination">
+  {% if page_obj.has_other_pages %}
+    <ul class="pagination pagination-sm justify-content-end">
+      {% for i in page_obj.paginator.page_range %}
+        {% if page_obj.number == i %}
+          <li class="page-item active">
+            <a class="page-link">{{ i }}</a>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
