@@ -15,8 +15,8 @@
         <div class="cv-container">
             {% for cv in page_obj %}
                 <div class="cv">
-                    {% if cv.photo %}
-                        <img class="cv-photo" src="{{ cv.photo.url }}">
+                    <h1>{% if cv.picture %}</h1>
+                    <img class="cv-photo" src="{{ cv.picture.url }}" style="max-width: 500px; max-height: 500px;">
                     {% else %}
                         <img class="cv-photo default-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}">
                     {% endif %}
