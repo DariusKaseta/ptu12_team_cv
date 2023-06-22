@@ -16,29 +16,39 @@
 
 
 {% if cv.education_set.exists %}
+  <div class="education-entry">
     <h2>Education:</h2>
     <ul>
-        {% for education in cv.education_set.all %}
-            <li><p>Institution: {{ education.school }}</p></li>
-            <li><p>Program: {{ education.program }}</p></li>
-            <li><p>Institution name: {{ education.school_name }}</p></li>
-            <li><p>Obtained degree: {{ education.degree }}</p></li>
-            <li><p>Period: {{ education.date_from }} - {{ education.date_until }}</p></li>
-        {% endfor %}
+      {% for education in cv.education_set.all %}
+      <li><p>Institution: {{ education.school }}</p></li>
+      <p>Program: {{ education.program }}</p></li>
+      <p>Institution name: {{ education.school_name }}</p></li>
+      <p>Obtained degree: {{ education.degree }}</p></li>
+      <p>Period: {{ education.date_from }} - {{ education.date_until }}</p></li>
+      {% if not forloop.last %}
+        <div class="education-separator"></div>
+      {% endif %}
+      {% endfor %}
     </ul>
+  </div>
 {% endif %}
 
 
 {% if cv.workexperience_set.exists %}
+<div class="workexperience-entry">
     <h2>Work Experience:</h2>
     <ul>
         {% for experience in cv.workexperience_set.all %}
             <li><p>Workplace: {{ experience.workplace_name }}</p></li>
-            <li><p>Main duties: {{ experience.duties }}</p></li>
-            <li><p>Working period: {{ experience.date_from }} - {{ experience.date_until }}</p></li>
-        {% endfor %}
-    </ul>
-{% endif %}
+            <p>Main duties: {{ experience.duties }}</p></li>
+            <p>Working period: {{ experience.date_from }} - {{ experience.date_until }}</p></li>
+            {% if not forloop.last %}
+            <div class="workexperience-separator"></div>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
 
 
 {% if cv.skill_set.exists %}

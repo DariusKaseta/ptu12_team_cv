@@ -21,8 +21,10 @@
         <li class="nav-button"><a href="{% url 'my_cv' %}">My Cvs</a></li>
         <li class="nav-button"><a href="{% url 'logout' %}">Log out</a></li>
         {% else %}
-        <li><a href="{%url 'signup' %}">Sign up</a></li>
-        <li><a href="{%url 'login' %}">Log in</a></li>
+        <li class="nav-button">
+            <a href="{% url 'signup' %}">Sign up</a>
+            <a href="{% url 'login' %}">Log in</a>
+        </li>
         {% endif %}
         {% if user.is_authenticated %}
         {% if user.is_staff or user.is_superuser %}
