@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.template.loader import render_to_string
 import weasyprint
 import pdfkit
+from django.core.paginator import Paginator
 
 
 
@@ -25,7 +26,13 @@ def cv_detail(request, pk):
 
 def cv_participles_view(request):
     participles = CV.objects.all()
-    return render(request, 'ptu12_cv/cv_participles_view.html', {"participles": participles})
+    paginator = Paginator(participles, 10)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
+    return render(request, 'ptu12_cv/cv_participles_view.html', {"participles": participles, 'page_obj': page_obj})
+
 
 def index(request):
 
@@ -72,3 +79,14 @@ def cv_pdf_view(request, cv_id):
     return response
 
 
+def cv_participles_search(request):
+    query = request.GET.get('query')
+    search_results = CV.objects.filter(
+        Q(first_name__icontains = query)|
+        Q(last_name__icontains = query)|
+        Q(email__icontains = query)|
+        Q(phone_number__icontains = query)|
+        Q(city__icontains = query)|
+        Q(title__icontains = query)
+    )
+    return render(request, "includes/cv_participles_search.html", {'cvs': search_results, 'query':query})

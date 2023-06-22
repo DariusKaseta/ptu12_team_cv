@@ -8,6 +8,9 @@ from .forms import CvForm
 from .forms import ProfileUpdateForm, UserUpdateForm, EducationFormSet, WorkExperienceFormSet, SkillFormSet
 from django.forms import inlineformset_factory
 from django.http import HttpResponseBadRequest
+from django.core.paginator import Paginator
+from django.db.models import Q
+
 
 
 User = get_user_model()
@@ -61,6 +64,15 @@ def signup(request):
 def my_cv(request):
     user_cv = CV.objects.filter(user=request.user)
     return render(request, 'user_profile/my_cv.html', {'user_cv':user_cv})
+
+@login_required
+def my_cv(request):
+    user_cv = CV.objects.filter(user=request.user)
+    paginator = Paginator(user_cv, 5)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'user_profile/my_cv.html', {'user_cv': user_cv,'page_obj': page_obj})
 
 
 @login_required
@@ -183,7 +195,19 @@ def update_cv(request):
         "skill_formset": skill_formset,
     })
 
+
     
+def my_cv_search(request):
+    query = request.GET.get('query')
+    search_results = CV.objects.filter(
+        Q(first_name__icontains = query)|
+        Q(last_name__icontains = query)|
+        Q(email__icontains = query)|
+        Q(phone_number__icontains = query)|
+        Q(city__icontains = query)|
+        Q(title__icontains = query)
+    )
+    return render(request, "ptu12_cv/includes/cv_participles_search.html", {'cvs': search_results, 'query':query})
 
 
 
