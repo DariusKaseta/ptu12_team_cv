@@ -3,9 +3,14 @@ from django import forms
 from . import models
 from ptu12_cv.models import CV, Skill, Education, WorkExperience
 from django.forms import inlineformset_factory
+from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
+
 
 
 class CvForm(forms.ModelForm):
+    phone_number = PhoneNumberField(widget=PhoneNumberPrefixWidget(initial='LT'))
+
     class Meta:
         model = CV
         fields = ("user", "title", "first_name", "last_name", "email", "phone_number", "city", "picture", "scope", "about_user")

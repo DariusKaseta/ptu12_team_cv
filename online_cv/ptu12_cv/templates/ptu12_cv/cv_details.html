@@ -9,13 +9,15 @@
         <h2><a class="button float-right" href="{% url 'create_meeting_reservation' cv_user_id=cv.user.id %}">Create Meeting Reservation</a></h2>
     {% endif %}
     {% include 'ptu12_cv/cv_details_pdf.html' %}
+    <ul>
     <a href="{% url 'cv_details_pdf' cv_id=cv.pk %}">Generate PDF</a>
+    </ul>
     {% if not user.hrrepresentative %}
     <ul>
-      <li><a href="{% url 'create_cv' %}">Create new CV</a></li>
+      <a href="{% url 'create_cv' %}">Create new CV</a>
     </ul>
     <ul>
-      <li><a href="{% url 'update_cv' %}?cv_id={{ cv.pk }}">Update your CV</a></li>
+      <a href="{% url 'update_cv' %}?cv_id={{ cv.pk }}">Update your CV</a>
     </ul>
     {% endif %}
 {% endblock content %}

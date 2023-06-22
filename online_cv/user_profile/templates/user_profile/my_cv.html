@@ -24,11 +24,10 @@
                 </li>
             {% endfor %}
         </ul>
-        <ul>
-            <li><a href="{% url 'create_cv' %}">Create new CV</a></li>
-        </ul>
     {% else %}
-        <p>No CVs found.</p>
+        <ul>
+            <a href="{% url 'create_cv' %}">Create new CV</a>
+        </ul>
     {% endif %}
 
     <div class="pagination">
