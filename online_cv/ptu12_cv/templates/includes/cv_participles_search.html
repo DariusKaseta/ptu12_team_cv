@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Search by "{{ query }}" results:</h1>
+  <br>
+  {% if cvs %}
+    <ul>
+      {% for cv in cvs %}
+        <li>
+          <a href="{% url 'cv_details' cv.pk %}">{{ cv.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Whoops, no CVs found.</p>
+  {% endif %}
+{% endblock %}
