@@ -18,7 +18,9 @@
         {% if user.is_authenticated %}
         <li class="nav-button"><a href="{% url 'profile' %}">&#128100; {{ user.get_username }}</a></li>
         <li class="nav-button"><a href="{% url 'meeting_reservation_list' %}">My Meetings</a></li>
+        {% if not user.hrrepresentative %}
         <li class="nav-button"><a href="{% url 'my_cv' %}">My Cvs</a></li>
+        {% endif %}
         <li class="nav-button"><a href="{% url 'logout' %}">Log out</a></li>
         {% else %}
         <li class="nav-button">

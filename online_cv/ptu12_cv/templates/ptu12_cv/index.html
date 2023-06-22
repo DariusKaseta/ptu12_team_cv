@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Welcome to {{ block.super }}{% endblock title %}
 {% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
 <h1>Online CV</h1>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="background-animation"></div>
 <p>Welcome!</p>
-<p>Currently working on:</p>
 {% comment %} <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
