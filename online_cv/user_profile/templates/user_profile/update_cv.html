@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Update CV{% endblock title %}
 {% block content %}
   <h1>Update CV</h1>
@@ -22,30 +23,40 @@
     <fieldset>
       <legend><strong>Education:</strong></legend>
       {{ education_formset.management_form }}
+      <div id="education-form-container">
       {% for form in education_formset %}
-      <ul>
+      <ul class="education-form">
         <li>{{ form }}</li>
       </ul>
-      {% endfor %}    
+      {% endfor %}  
+      <button type="button" id="add-education-form">Add Education</button>  
     </fieldset>
     <fieldset>
       <legend><strong>Work Experience:</strong></legend>
       {{ work_experience_formset.management_form }}
+      <div id="work-experience-form-container">
       {% for form in work_experience_formset %}
+      <ul class="work-experience-form">
       <ul>
       <li>{{ form }}</li>
       </ul>
       {% endfor %}
+      <button type="button" id="add-work-experience-form">Add Work</button>
     </fieldset>
     <fieldset>
       <legend><strong>Skills:</strong></legend>
       {{ skill_formset.management_form }}
+      <div id="skill-form-container">
       {% for form in skill_formset %}
+      <ul class="skill-form">
       <ul>
       <li>{{ form }}</li>
       </ul>
       {% endfor %}
+      <button type="button" id="add-skill-form">Add Skill</button>
     </fieldset>
     <button type="submit">Update</button>
   </form>
+  <script src="{% static 'js/jquery-3.7.0.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
 {% endblock content %}
