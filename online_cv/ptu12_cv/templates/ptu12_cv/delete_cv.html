@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete CV {% endblock title %}
+
+{% block content %}
+<h1> Delete CV </h1>
+<p> Are you sure want to delete this CV </p>
+
+<form method="POST" action="{% url 'delete-cv' cv_id=cv.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="cv_id" value="{{ cv.id }}">
+    <button type="submit">Delete</button>
+</form>
+{% endblock content %}

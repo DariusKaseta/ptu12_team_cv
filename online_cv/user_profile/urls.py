@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import my_cv, create_cv, update_cv, my_cv_search
+from .views import my_cv, create_cv
  
 
 urlpatterns = [
@@ -12,6 +12,6 @@ urlpatterns = [
     path('create-cv/', create_cv, name='create_cv'),
     path('profile/update/', views.profile_update, name='profile_update'),
     path('CVs/update/', views.update_cv, name='update_cv'),
-    path('cv_participles_search/', views.my_cv_search, name='my_cv_search')
+    path('cv_participles_search/', views.my_cv_search, name='my_cv_search'),
 
 ]
