@@ -4,31 +4,35 @@
 {% block content %}
     <h1>My CVs</h1>
 
+    {% comment %}
     <form method="GET" action="{% url 'cv_participles_search' %}">
         <input type="text" name="query" placeholder="Search CVs">
         <button type="submit">Search</button>
-      </form>    
+    </form>
+    {% endcomment %}
 
     {% if user_cv|length > 0 %}
-        <ul>
+        <div class="cv-container">
             {% for cv in page_obj %}
+                <div class="cv">
                     {% if cv.photo %}
                         <img class="cv-photo" src="{{ cv.photo.url }}">
                     {% else %}
                         <img class="cv-photo default-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}">
                     {% endif %}
-                    <a href="{% url 'cv_details' cv.pk %}">
-                        {{ cv.title }}
-                    </a>
+                    <h3 class="cv-name">
+                        <a href="{% url 'cv_details' cv.pk %}">{{ cv.title }}</a>
+                    </h3>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
     {% else %}
         <ul>
             <a href="{% url 'create_cv' %}">Create new CV</a>
         </ul>
-
     {% endif %}
 
+    {% comment %}
     <div class="pagination">
         <span class="step-links">
           {% if page_obj.has_previous %}
@@ -46,4 +50,5 @@
           {% endif %}
         </span>
     </div>
+    {% endcomment %}
 {% endblock %}
