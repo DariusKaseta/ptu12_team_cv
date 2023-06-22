@@ -1,48 +1,5 @@
 {% extends 'base.html' %}
-{% comment %} 
-{% block title %}Create Your CV{% endblock title %}
-{% block content %}
-    <h1> Create CV </h1>
-    <form method="post" action="{% url 'create_cv' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-       
-       
-        {{ education_formset.management_form }}
-        <div id="education-formset">
-          {% for form in education_formset %}
-            {{ form.as_table }}
-          {% endfor %}
-        </div>
-        {% comment %} <button type="button" id="add-education-form">Add Education</button> {% endcomment %}
-        
-        {% comment %} {{ work_experience_formset.management_form }}
-        <div id="work-experience-formset">
-            {% for form in work_experience_formset %}
-                {{ form.as_table }}
-            {% endfor %}
-        </div>
-        {% comment %} <button type="button" id="add-work-experience-form">Add Work Experience</button> {% endcomment %}
-    
-        {% comment %} {{ skill_formset.management_form }}
-        <div id="skill-formset">
-            {% for form in skill_formset %}
-                {{ form }}
-            {% endfor %}
-        </div> {% endcomment %} 
-        {% comment %} <button type="button" id="add-skill-form">Add Skill</button> {% endcomment %}
-    
-    
-    {% comment %} <button type="submit">Submit</button>
-</form> {% endcomment %}
-    
-
-
-
-{% comment %} {% endblock content %} {% endcomment %}
-
-
-
+{% load static %}
 {% block title %}Create your CV{% endblock title %}
 {% block content %}
   <h1>Create your CV</h1>
@@ -66,30 +23,46 @@
     <fieldset>
       <legend><strong>Education:</strong></legend>
       {{ education_formset.management_form }}
+      <div id="education-form-container">
       {% for form in education_formset %}
-      <ul>
-        <li>{{ form }}</li>
-      </ul>
-      {% endfor %}    
+      <ul class="education-form">
+        <ul>
+          <li>{{ form }}</li>
+        </ul>
+      {% endfor %}
+      </div>
+      <button type="button" id="add-education-form">Add Education</button>
     </fieldset>
     <fieldset>
       <legend><strong>Work Experience:</strong></legend>
       {{ work_experience_formset.management_form }}
+      <div id="work-experience-form-container">
       {% for form in work_experience_formset %}
-      <ul>
-      <li>{{ form }}</li>
-      </ul>
+      <ul class="work-experience-form">
+        <ul>
+          <li>{{ form }}</li>
+        </ul>
       {% endfor %}
+      </div>
+      <button type="button" id="add-work-experience-form">Add Work</button>
     </fieldset>
     <fieldset>
       <legend><strong>Skills:</strong></legend>
       {{ skill_formset.management_form }}
+      <div id="skill-form-container">
       {% for form in skill_formset %}
-      <ul>
-      <li>{{ form }}</li>
-      </ul>
+      <ul class="skill-form">
+        <ul>
+          <li>{{ form }}</li>
+        </ul>
       {% endfor %}
+      </div>
+      <button type="button" id="add-skill-form">Add Skill</button>
     </fieldset>
     <button type="submit">Create</button>
   </form>
+  <script src="{% static 'js/jquery-3.7.0.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
 {% endblock content %}
+
+    
