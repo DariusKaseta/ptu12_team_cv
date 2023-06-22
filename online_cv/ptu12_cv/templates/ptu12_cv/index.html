@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Welcome to {{ block.super }}{% endblock title %}
+
+{% block title %}Welcome to {{ block.super }}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock extra_css %}
+
 {% block content %}
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-<h1>Online CV</h1>
-<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <div class="background-animation"></div>
-<p>Welcome!</p>
-{% comment %} <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form> {% endcomment %}
-{% endblock content %}
+  <h1>Online CV</h1>
+  <div class="background-animation"></div>
+  <p class="paragraph">Welcome to our CV Generator and Recruitment Page!</p>
+  
+  <p class="paragraph">Are you searching for the perfect candidate or looking to create an impressive CV that will stand out from the crowd? Look no further! Our innovative platform combines cutting-edge technology with user-friendly features to streamline the recruitment process and empower job seekers.</p>
+  
+  <p class="paragraph">With our CV Generator, crafting a professional and tailored curriculum vitae has never been easier. Our intelligent system utilizes advanced algorithms to guide you through each step, ensuring that your skills, experience, and achievements are showcased in the most compelling way possible. Say goodbye to the hassle of formatting and struggling to find the right words – our CV Generator does it all for you, leaving you more time to focus on what really matters: landing your dream job.</p>
+  
+  <p class="paragraph">For employers and recruiters, our Recruitment Page provides a centralized hub to streamline the talent acquisition process. Browse through a vast pool of pre-screened candidates, each with their own comprehensive CV, and effortlessly filter through them based on specific criteria that match your organization's requirements. Our platform leverages machine learning and artificial intelligence to match you with the most suitable candidates, saving you valuable time and resources.</p>
+  
+  <p class="paragraph">Whether you're a job seeker or an employer, our CV Generator and Recruitment Page offer an intuitive, user-friendly experience that puts you in control. Join our platform today and take a step towards unlocking your full potential or finding the ideal candidate to fuel your organization's growth.</p>
+  
+  <p class="paragraph">Experience the future of recruitment and CV creation with us. Get started now!</p>
+{% endblock %}
