@@ -8,7 +8,7 @@ body {
   flex-direction: column;
   min-height: 200vh;
   padding: 0;
-  margin: 0;
+  margin: 1rem;
   background-color: #FFFFFF;
 }
 
@@ -21,26 +21,38 @@ body {
 
 .nav {
   display: flex;
-  align-items: center; 
+  align-items: center;
   list-style-type: none;
-  padding: 0rem;
+  padding: 0;
 }
 
 .nav-button {
-  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-button a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #00ABE4;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 50px;
+  border: none;
+  font-size: medium;
   margin-left: 15px;
 }
 
-.nav-button:last-child {
-  margin-right: 15px;
-}
-
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background-color: #E9F1FA;
   padding: 1rem;
   color: #17202A;
   text-align: left;
-  }
+}
 
 .logo {
   display: flex;
@@ -76,6 +88,30 @@ a {
   color: #ffffff;
   text-decoration: none;
   border-radius: 50px;
+  border: none;
+  font-size: medium;
+}
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #00ABE4;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 50px;
+  border: none;
+  font-size: medium;
+}
+
+input[type="submit"] {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #00ABE4;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 50px;
+  border: none;
+  font-size: medium;
 }
 
 .box {
@@ -103,4 +139,12 @@ a {
 p, h1, h2, h3, h4, h5, h6 {
   padding: 1.5px;
   margin: 1.5px;
+}
+
+.education-separator {
+  margin-bottom: 20px;
+}
+
+.workexperience-separator {
+  margin-bottom: 20px;
 }

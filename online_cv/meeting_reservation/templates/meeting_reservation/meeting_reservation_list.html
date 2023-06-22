@@ -15,7 +15,9 @@
                         <p>Start Time: {{ reservation.start_time }}</p>
                         <p>End Time: {{ reservation.end_time }}</p>
                         <a href="{% url 'delete_meeting' meeting_id=reservation.id %}">Delete</a>
+                        {% if user.hrrepresentative %}
                         <a href="{% url 'update_meeting' meeting_id=reservation.id %}">Update</a>
+                        {% endif %}
                     </li>
                 {% endif %}
             {% empty %}
