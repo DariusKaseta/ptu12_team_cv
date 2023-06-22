@@ -1,8 +1,9 @@
 {% load static %}
 
-{% if cv.picture.exists %}
-  <img class="cv-photo" src="{{ cv.picture.url }}" style="max-width: 200px; max-height: 200px;">
-{% endif %}
+  <h1>{% if cv.picture %}</h1>
+    <img class="cv-photo" src="{{ cv.picture.url }}" style="max-width: 500px; max-height: 500px;">
+  {% endif %}
+
 <h2>Contacting information:</h2>
 <ul>
   <li><p>CV's title: {{ cv.title }}</p></li>
