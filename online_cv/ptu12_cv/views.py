@@ -6,7 +6,10 @@ from django.template.loader import render_to_string
 import weasyprint
 import pdfkit
 from django.core.paginator import Paginator
-
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseBadRequest
+from django.shortcuts import redirect
+from django.urls import reverse
 
 
 
@@ -90,3 +93,17 @@ def cv_participles_search(request):
         Q(title__icontains = query)
     )
     return render(request, "includes/cv_participles_search.html", {'cvs': search_results, 'query':query})
+
+
+
+@login_required
+def delete_cv(request, cv_id):
+        cv = get_object_or_404(CV, pk=cv_id, user=request.user)
+          
+        if request.method =="POST":
+            cv.delete()
+            return redirect('my_my_cv')
+       
+        context = {"cv":cv}
+
+        return render(request, "ptu12_cv/delete_cv.html", context)
