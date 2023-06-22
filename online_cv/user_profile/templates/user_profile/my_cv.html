@@ -20,16 +20,10 @@
                     {% else %}
                         <img class="cv-photo default-photo" src="{% static 'ptu12_cv/img/default_cover.jpg' %}">
                     {% endif %}
-
                     <h3 class="cv-name">
                         <a href="{% url 'cv_details' cv.pk %}">{{ cv.title }}</a>
                     </h3>
                 </div>
-
-                    <a href="{% url 'cv_details' cv.pk %}">
-                        {{ cv.title }}
-                    </a>
-
             {% endfor %}
         </div>
     {% else %}
