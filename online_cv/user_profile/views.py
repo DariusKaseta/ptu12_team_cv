@@ -68,7 +68,7 @@ def my_cv(request):
 @login_required
 def my_cv(request):
     user_cv = CV.objects.filter(user=request.user)
-    paginator = Paginator(user_cv, 5)  
+    paginator = Paginator(user_cv, 1000)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
