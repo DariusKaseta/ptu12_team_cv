@@ -8,8 +8,10 @@ from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
 
 
+
 class CvForm(forms.ModelForm):
     phone_number = PhoneNumberField(widget=PhoneNumberPrefixWidget(initial='LT'))
+    picture = forms.ImageField(required=False)
 
     class Meta:
         model = CV
@@ -39,21 +41,27 @@ EducationFormSet = inlineformset_factory(
     Education,
     fields=('program', 'date_from', 'date_until', 'school', 'school_name', 'degree'),
     extra=1,
-    can_delete=True
+    widgets={
+        'date_from': forms.DateInput(attrs={'type': 'date'}),
+        'date_until': forms.DateInput(attrs={'type': 'date'}),
+    }
 )
+
 WorkExperienceFormSet = inlineformset_factory(
     CV,
     WorkExperience,
     fields=('workplace_name', 'date_from', 'date_until', 'duties'),
     extra=1,
-    can_delete=True
+    widgets={
+        'date_from': forms.DateInput(attrs={'type': 'date'}),
+        'date_until': forms.DateInput(attrs={'type': 'date'}),
+    }
 )
 SkillFormSet = inlineformset_factory(
     CV,
     Skill,
     fields=('skill',),
-    extra=1,
-    can_delete=True
+    extra=1
 )
 
 

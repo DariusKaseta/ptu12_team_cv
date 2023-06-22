@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% comment %} 
 {% block title %}Create Your CV{% endblock title %}
 {% block content %}
     <h1> Create CV </h1>
@@ -13,29 +14,82 @@
             {{ form.as_table }}
           {% endfor %}
         </div>
-        <button type="button" id="add-education-form">Add Education</button>
+        {% comment %} <button type="button" id="add-education-form">Add Education</button> {% endcomment %}
         
-        {{ work_experience_formset.management_form }}
+        {% comment %} {{ work_experience_formset.management_form }}
         <div id="work-experience-formset">
             {% for form in work_experience_formset %}
                 {{ form.as_table }}
             {% endfor %}
         </div>
-        <button type="button" id="add-work-experience-form">Add Work Experience</button>
+        {% comment %} <button type="button" id="add-work-experience-form">Add Work Experience</button> {% endcomment %}
     
-        {{ skill_formset.management_form }}
+        {% comment %} {{ skill_formset.management_form }}
         <div id="skill-formset">
             {% for form in skill_formset %}
-                {{ form.as_table }}
+                {{ form }}
             {% endfor %}
-        </div>
-        <button type="button" id="add-skill-form">Add Skill</button>
+        </div> {% endcomment %} 
+        {% comment %} <button type="button" id="add-skill-form">Add Skill</button> {% endcomment %}
     
     
-    <button type="submit">Submit</button>
-</form>
+    {% comment %} <button type="submit">Submit</button>
+</form> {% endcomment %}
     
 
 
 
+{% comment %} {% endblock content %} {% endcomment %}
+
+
+
+{% block title %}Create your CV{% endblock title %}
+{% block content %}
+  <h1>Create your CV</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset>
+      <legend><strong>Personal Information:</strong></legend>
+      <ul>
+        <li>{{ form.user.label_tag }} {{ form.user }}</li>
+        <li>{{ form.first_name.label_tag }} {{ form.first_name }}</li>
+        <li>{{ form.last_name.label_tag }} {{ form.last_name }}</li>
+        <li>{{ form.email.label_tag }} {{ form.email }}</li>
+        <li>{{ form.phone_number.label_tag }} {{ form.phone_number }}</li>
+        <li>{{ form.city.label_tag }} {{ form.city }}</li>
+        <li>{{ form.picture.label_tag }} {{ form.picture }}</li>
+        <li>{{ form.scope.label_tag }} {{ form.scope }}</li>
+        <li>{{ form.about_user.label_tag }} {{ form.about_user }}</li>
+        <li>{{ form.title.label_tag }} {{ form.title }}</li>
+      </ul>
+    </fieldset>
+    <fieldset>
+      <legend><strong>Education:</strong></legend>
+      {{ education_formset.management_form }}
+      {% for form in education_formset %}
+      <ul>
+        <li>{{ form }}</li>
+      </ul>
+      {% endfor %}    
+    </fieldset>
+    <fieldset>
+      <legend><strong>Work Experience:</strong></legend>
+      {{ work_experience_formset.management_form }}
+      {% for form in work_experience_formset %}
+      <ul>
+      <li>{{ form }}</li>
+      </ul>
+      {% endfor %}
+    </fieldset>
+    <fieldset>
+      <legend><strong>Skills:</strong></legend>
+      {{ skill_formset.management_form }}
+      {% for form in skill_formset %}
+      <ul>
+      <li>{{ form }}</li>
+      </ul>
+      {% endfor %}
+    </fieldset>
+    <button type="submit">Create</button>
+  </form>
 {% endblock content %}

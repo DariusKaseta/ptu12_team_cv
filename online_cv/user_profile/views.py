@@ -78,19 +78,21 @@ def my_cv(request):
 @login_required
 def create_cv(request):
     form = CvForm()
-    education_formset = EducationFormSet(instance=CV(), prefix='education_formset')
-    work_experience_formset = WorkExperienceFormSet(instance=CV(), prefix='work_experience_formset')
-    skill_formset = SkillFormSet(instance=CV(), prefix='skill_formset')
+    education_formset = EducationFormSet(instance=None, prefix='education', )
+    work_experience_formset = WorkExperienceFormSet(instance=None, prefix='work_experience')
+    skill_formset = SkillFormSet(instance=None, prefix='skill')
     
     if request.method == 'POST':
-        form = CvForm(request.POST)
+        form = CvForm(request.POST, request.FILES)
         if form.is_valid():
             cv = form.save(commit=False)
             cv.user = request.user
+            cv.picture = request.FILES['picture']
+            cv.save()
             
-            education_formset = EducationFormSet(request.POST, instance=cv, prefix = 'education_formset')
-            work_experience_formset = WorkExperienceFormSet(request.POST, instance=cv, prefix = 'work_experience_formset')
-            skill_formset = SkillFormSet(request.POST, instance=cv, prefix= 'skill_formset' )
+            education_formset = EducationFormSet(request.POST, instance=cv, prefix = 'education')
+            work_experience_formset = WorkExperienceFormSet(request.POST, instance=cv, prefix = 'work_experience')
+            skill_formset = SkillFormSet(request.POST, instance=cv, prefix= 'skill' )
 
             if education_formset.is_valid() and work_experience_formset.is_valid() and skill_formset.is_valid():
                 cv.save()
@@ -110,11 +112,16 @@ def create_cv(request):
 
                 return redirect('cv_details', pk=cv.pk)
     
+    # else:
+    #     form = CvForm()
+    #     education_formset = EducationFormSet(instance=CV(), prefix='education')
+    #     work_experience_formset = WorkExperienceFormSet(instance=CV(), prefix='work_experience')
+    #     skill_formset = SkillFormSet(instance=CV(), prefix='skill')
     else:
-        form = CvForm()
-        education_formset = EducationFormSet(instance=CV(), prefix='education_formset')
-        work_experience_formset = WorkExperienceFormSet(instance=CV(), prefix='work_experience_formset')
-        skill_formset = SkillFormSet(instance=CV(), prefix='skill_formset')
+            print(form.errors)
+            print(education_formset.errors)
+            print(work_experience_formset.errors)
+            print(skill_formset.errors)
 
     return render(
         request,

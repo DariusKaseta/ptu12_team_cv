@@ -4,10 +4,10 @@
 {% block content %}
     <h1>My CVs</h1>
 
-    <form method="GET" action="{% url 'cv_participles_search' %}">
+    {% comment %} <form method="GET" action="{% url 'cv_participles_search' %}">
         <input type="text" name="query" placeholder="Search CVs">
         <button type="submit">Search</button>
-      </form>    
+      </form>     {% endcomment %}
 
     {% if user_cv|length > 0 %}
         <ul>
@@ -30,7 +30,7 @@
         </ul>
     {% endif %}
 
-    <div class="pagination">
+    {% comment %} <div class="pagination">
         <span class="step-links">
           {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; First</a>
@@ -46,5 +46,5 @@
             <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
           {% endif %}
         </span>
-    </div>
+    </div> {% endcomment %}
 {% endblock %}
