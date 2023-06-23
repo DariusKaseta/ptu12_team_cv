@@ -252,8 +252,6 @@ form {
   border-radius: 10px
 }
 
-
-
 .cv-tips3{
   background-color: #8ac3ff;
   border-radius: 10px
@@ -266,10 +264,13 @@ form {
   border-radius: 10px
 }
 
-
-
-
 .cv-tips5{
   background-color: #2d8ff8;
   border-radius: 10px
+}
+
+.cv-tips img {
+  display: block;
+  margin-top: 20px;
+  max-width: 100%;
 }
