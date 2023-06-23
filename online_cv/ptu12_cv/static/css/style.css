@@ -249,28 +249,36 @@ form {
 
 .cv-tips2{
   background-color: #cae3ff;
-  border-radius: 10px
+  border-radius: 10px;
+  margin-bottom: 50px;
 }
 
 .cv-tips3{
   background-color: #8ac3ff;
-  border-radius: 10px
+  border-radius: 10px;
+  margin-bottom: 50px;
 }
 
 
 
 .cv-tips4{
   background-color: #4da3ff;
-  border-radius: 10px
+  border-radius: 10px;
+  margin-bottom: 50px;
 }
 
 .cv-tips5{
   background-color: #2d8ff8;
-  border-radius: 10px
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+.heading-gap {
+  margin-bottom: 30px;
 }
 
 .cv-tips img {
   display: block;
   margin-top: 20px;
-  max-width: 100%;
+  max-width: 40%;
+  margin-bottom: 100px;
 }
