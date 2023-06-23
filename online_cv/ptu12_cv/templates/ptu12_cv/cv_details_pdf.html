@@ -9,10 +9,7 @@
   <li><p>Phone: {{ cv.phone_number }}</p></li>
   <li><p>City: {{ cv.city }}</p></li>
   <li><p>About user: {{ cv.about_user }}</p></li>
-  <li><p>CV's title: {{ cv.title }}</p></li>
 </ul>
-
-
 {% if cv.education_set.exists %}
   <div class="education-entry">
     <h2>Education:</h2>
@@ -30,8 +27,6 @@
     </ul>
   </div>
 {% endif %}
-
-
 {% if cv.workexperience_set.exists %}
 <div class="workexperience-entry">
     <h2>Work Experience:</h2>
@@ -47,8 +42,6 @@
         </ul>
       </div>
     {% endif %}
-
-
 {% if cv.skill_set.exists %}
     <h2>Skills:</h2>
     <ul>
