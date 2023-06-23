@@ -1,18 +1,15 @@
 {% load static %}
-
+<h2>Contacting information:</h2>
+<ul>
   <h1>{% if cv.picture %}</h1>
     <img class="cv-photo" src="{{ cv.picture.url }}" style="max-width: 500px; max-height: 500px;">
   {% endif %}
-
-<h2>Contacting information:</h2>
-<ul>
-  <li><p>CV's title: {{ cv.title }}</p></li>
   <li><p>First & Last name: {{ cv.first_name }} {{ cv.last_name }}</p></li>
   <li><p>Email: {{ cv.email }}</p></li>
   <li><p>Phone: {{ cv.phone_number }}</p></li>
   <li><p>City: {{ cv.city }}</p></li>
-  <li><p>Picture: {{ cv.picture }}</p></li>
   <li><p>About user: {{ cv.about_user }}</p></li>
+  <li><p>CV's title: {{ cv.title }}</p></li>
 </ul>
 
 
