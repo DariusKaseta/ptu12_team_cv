@@ -87,8 +87,6 @@ class CV(models.Model):
     first_name = models.CharField(_("first_name"), max_length=100)
     last_name = models.CharField(_("last_name"), max_length=100, db_index=True)
     email = models.CharField(_("email"), max_length=100, db_index=True)
-    # country_code = models.CharField(_("code"), max_length=10, default="+370")
-    # extention = models.IntegerField(_("phone_number"))
     phone_number = PhoneNumberField(blank=True)
     city = models.CharField(_("city"), max_length=100, db_index=True)
     picture = models.ImageField(_("picture"), upload_to="online_cv/media/ptu12_cv/cv_pictures", null=True, blank=True)

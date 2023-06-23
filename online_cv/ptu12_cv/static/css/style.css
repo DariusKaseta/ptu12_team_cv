@@ -238,3 +238,38 @@ form {
   margin-bottom: 20px;
 }
 
+.cv-tips{
+  margin: 20px;
+  padding: 20px;
+}
+
+.heading-gap{
+  margin-bottom: 50px;
+}
+
+.cv-tips2{
+  background-color: #cae3ff;
+  border-radius: 10px
+}
+
+
+
+.cv-tips3{
+  background-color: #8ac3ff;
+  border-radius: 10px
+}
+
+
+
+.cv-tips4{
+  background-color: #4da3ff;
+  border-radius: 10px
+}
+
+
+
+
+.cv-tips5{
+  background-color: #2d8ff8;
+  border-radius: 10px
+}

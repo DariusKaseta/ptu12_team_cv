@@ -14,7 +14,7 @@
     </ul>
     {% if not user.hrrepresentative %}
     <ul>
-      <a href="{% url 'create_cv' %}">Create new CV</a>
+      <a href="{% url 'create_cv' %}">Create additional CV</a>
     </ul>
     <ul>
       <a href="{% url 'update_cv' %}?cv_id={{ cv.pk }}">Update your CV</a>

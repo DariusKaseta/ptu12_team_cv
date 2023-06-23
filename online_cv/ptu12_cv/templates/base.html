@@ -14,7 +14,7 @@
         <strong><li class="logo">&#128234; Create your own personal CV online!</li></strong>
         <li class="nav-button"><a href="{% url 'index' %}">Home</a></li>
         <li class="nav-button"><a href="{% url 'participles_view' %}">For HR's</a></li>
-        <li class="nav-button"><a href="{% url 'cvs' %}">CVs</a></li>
+        <li class="nav-button"><a href="{% url 'cvs' %}"> Make your CV Shine!</a></li>
         {% if user.is_authenticated %}
         <li class="nav-button"><a href="{% url 'profile' %}">&#128100; {{ user.get_username }}</a></li>
         <li class="nav-button"><a href="{% url 'meeting_reservation_list' %}">My Meetings</a></li>
